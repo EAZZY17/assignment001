@@ -1,0 +1,99 @@
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo-shape {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #dc2626, #991b1b);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.logo-shape::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transform: rotate(45deg);
+  transition: all 0.6s ease;
+  opacity: 0;
+}
+
+.logo:hover .logo-shape::before {
+  opacity: 1;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.logo-initial {
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+  z-index: 1;
+  position: relative;
+}
+
+.logo-text {
+  font-size: 20px;
+  font-weight: 700;
+  color: #dc2626;
+  transition: color 0.3s ease;
+}
+
+.logo:hover .logo-shape {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
+}
+
+.logo:hover .logo-text {
+  color: #b91c1c;
+}
+
+/* Size variants */
+.logo.small .logo-shape {
+  width: 32px;
+  height: 32px;
+}
+
+.logo.small .logo-initial {
+  font-size: 14px;
+}
+
+.logo.small .logo-text {
+  font-size: 16px;
+}
+
+.logo.large .logo-shape {
+  width: 60px;
+  height: 60px;
+}
+
+.logo.large .logo-initial {
+  font-size: 24px;
+}
+
+.logo.large .logo-text {
+  font-size: 28px;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+}
