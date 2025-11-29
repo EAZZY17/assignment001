@@ -29,16 +29,57 @@ async function apiRequest(endpoint, options = {}) {
     console.log(`[API] Making request to: ${url}`, config.method || 'GET');
     const response = await fetch(url, config);
     
+    // Check if response has content before parsing
+    const contentType = response.headers.get('content-type');
+    const text = await response.text();
+    
     if (!response.ok) {
-      const errorData = await response.json().catch(() => ({ message: 'An error occurred' }));
+      // Try to parse as JSON, but handle non-JSON responses
+      let errorData;
+      try {
+        errorData = text ? JSON.parse(text) : { message: 'An error occurred' };
+      } catch {
+        // If response is HTML (like a 404 page) or empty, provide a helpful message
+        if (response.status === 404) {
+          errorData = { 
+            message: 'API endpoint not found. Please make sure the backend server is deployed and running.' 
+          };
+        } else if (response.status >= 500) {
+          errorData = { 
+            message: 'Server error. Please try again later.' 
+          };
+        } else {
+          errorData = { 
+            message: `Request failed with status ${response.status}. The backend may not be available.` 
+          };
+        }
+      }
       console.error(`[API] Request failed: ${response.status}`, errorData);
       throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
     }
     
-    const data = await response.json();
+    // Parse response as JSON, handle empty responses
+    if (!text || text.trim() === '') {
+      // Some endpoints might return empty responses (like 204 No Content)
+      return null;
+    }
+    
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch (parseError) {
+      console.error(`[API] Failed to parse JSON response from ${url}:`, parseError);
+      throw new Error('Invalid response from server. The backend may not be properly configured.');
+    }
+    
     console.log(`[API] Request successful: ${url}`, data);
     return data;
   } catch (error) {
+    // Handle network errors and provide user-friendly messages
+    if (error.name === 'TypeError' && error.message.includes('fetch')) {
+      console.error(`[API] Network error for ${url}:`, error);
+      throw new Error('Cannot connect to the server. Please check if the backend API is deployed and accessible.');
+    }
     console.error(`[API] Request error for ${url}:`, error);
     throw error;
   }

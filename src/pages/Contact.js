@@ -29,11 +29,19 @@ const Contact = () => {
       const data = await contactsAPI.getAll();
       console.log('✅ Contacts fetched:', data);
       setContacts(Array.isArray(data) ? data : []);
+      // Clear any previous errors if fetch succeeds
+      setSubmitError(null);
     } catch (err) {
       console.error('❌ Error fetching contacts:', err);
       setContacts([]);
-      // Show error to user
-      setSubmitError('Failed to load contacts. Please check if the backend is running.');
+      // Only show error if user is trying to view contacts list
+      // Don't show error on initial page load to avoid scaring users
+      if (showContactsList) {
+        const errorMsg = err.message?.includes('backend') || err.message?.includes('API') 
+          ? err.message 
+          : 'Failed to load contacts. The backend API may not be available.';
+        setSubmitError(errorMsg);
+      }
     } finally {
       setLoading(false);
     }
@@ -101,8 +109,12 @@ const Contact = () => {
       if (err.message) {
         if (err.message.includes('unique') || err.message.includes('duplicate')) {
           errorMessage = 'This email address has already been submitted. Please use a different email.';
-        } else if (err.message.includes('network') || err.message.includes('fetch')) {
-          errorMessage = 'Cannot connect to the server. Please make sure the backend is running on port 3000.';
+        } else if (err.message.includes('network') || err.message.includes('fetch') || err.message.includes('Cannot connect')) {
+          errorMessage = 'Cannot connect to the server. Please make sure the backend API is deployed and accessible.';
+        } else if (err.message.includes('not found') || err.message.includes('endpoint not found')) {
+          errorMessage = 'The contact form API is not available. Please contact the site administrator.';
+        } else if (err.message.includes('backend') || err.message.includes('API')) {
+          errorMessage = err.message;
         } else {
           errorMessage = err.message;
         }
