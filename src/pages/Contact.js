@@ -148,22 +148,26 @@ const Contact = () => {
     {
       title: 'Email',
       details: 'edwinmakolo5@gmail.com',
-      description: 'Send me an email anytime'
+      description: 'Send me an email anytime',
+      icon: 'fas fa-envelope'
     },
     {
       title: 'Phone',
       details: '+1 (647) 803-1720',
-      description: 'Mon-Fri from 9am to 5pm'
+      description: 'Mon-Fri from 9am to 5pm',
+      icon: 'fas fa-phone'
     },
     {
       title: 'Location',
       details: 'Toronto, Canada',
-      description: 'Available for remote work'
+      description: 'Available for remote work',
+      icon: 'fas fa-map-marker-alt'
     },
     {
       title: 'Response Time',
       details: '< 24 hours',
-      description: 'I typically respond within 24 hours'
+      description: 'I typically respond within 24 hours',
+      icon: 'fas fa-clock'
     }
   ];
 
