@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { authAPI } from '../services/api';
 import './SignIn.css';
 
 const SignIn = () => {
@@ -34,22 +35,7 @@ const SignIn = () => {
     }
 
     try {
-      const response = await fetch('/api/auth/signin', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          email: formData.email.trim().toLowerCase(),
-          password: formData.password
-        })
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || 'Sign in failed');
-      }
+      const data = await authAPI.signIn(formData.email, formData.password);
 
       if (data.success && data.token) {
         // Store token and user info
@@ -58,11 +44,13 @@ const SignIn = () => {
         // Redirect to home or projects page
         navigate('/projects');
       } else {
-        throw new Error('Invalid response from server');
+        throw new Error(data.message || 'Invalid response from server');
       }
     } catch (err) {
-      setError(err.message || 'Failed to sign in. Please check your credentials.');
-      console.error('Sign in error:', err);
+      setError(err.message || 'Failed to sign in. Please check your credentials and ensure the backend is running.');
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Sign in error:', err);
+      }
     } finally {
       setLoading(false);
     }

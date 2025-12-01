@@ -190,11 +190,23 @@ export const usersAPI = {
   }, true), // requireAuth = true
 };
 
+// Auth API
+export const authAPI = {
+  signIn: (email, password) => apiRequest('/api/auth/signin', {
+    method: 'POST',
+    body: JSON.stringify({
+      email: email.trim().toLowerCase(),
+      password: password
+    }),
+  }), // No auth required for sign in
+};
+
 const api = {
   projects: projectsAPI,
   services: servicesAPI,
   contacts: contactsAPI,
   users: usersAPI,
+  auth: authAPI,
 };
 
 export default api;
