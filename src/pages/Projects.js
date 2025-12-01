@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { projectsAPI } from '../services/api';
+import { useAuth } from '../contexts/AuthContext';
 import './Projects.css';
 
 const Projects = () => {
+  const { isAuthenticated } = useAuth();
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -451,7 +453,7 @@ const Projects = () => {
                       </div>
                     )}
 
-                    {project.isUserProject && (
+                    {project.isUserProject && isAuthenticated && (
                       <div className="project-actions">
                         <button 
                           className="project-action-btn edit-btn"
@@ -478,35 +480,36 @@ const Projects = () => {
           )}
 
           {/* Add Your Own Project Section */}
-          <div className="add-project-section">
-            <div className="add-project-header">
-              <h2>{editingProjectId ? 'Edit Project' : 'Add Your Own Project'}</h2>
-              <p>{editingProjectId ? 'Update your project details' : 'Share your projects with the community'}</p>
-              <button 
-                className="btn btn-secondary"
-                onClick={() => {
-                  setShowAddForm(!showAddForm);
-                  if (showAddForm) {
-                    setEditingProjectId(null);
-                    setFormData({
-                      title: '',
-                      description: '',
-                      technologies: '',
-                      github: '',
-                      demo: '',
-                      role: '',
-                      outcome: '',
-                      category: 'web'
-                    });
-                  }
-                }}
-              >
-                <i className={`fas ${showAddForm ? 'fa-times' : 'fa-plus'}`}></i>
-                {showAddForm ? 'Cancel' : 'Add Project'}
-              </button>
-            </div>
+          {isAuthenticated ? (
+            <div className="add-project-section">
+              <div className="add-project-header">
+                <h2>{editingProjectId ? 'Edit Project' : 'Add Your Own Project'}</h2>
+                <p>{editingProjectId ? 'Update your project details' : 'Share your projects with the community'}</p>
+                <button 
+                  className="btn btn-secondary"
+                  onClick={() => {
+                    setShowAddForm(!showAddForm);
+                    if (showAddForm) {
+                      setEditingProjectId(null);
+                      setFormData({
+                        title: '',
+                        description: '',
+                        technologies: '',
+                        github: '',
+                        demo: '',
+                        role: '',
+                        outcome: '',
+                        category: 'web'
+                      });
+                    }
+                  }}
+                >
+                  <i className={`fas ${showAddForm ? 'fa-times' : 'fa-plus'}`}></i>
+                  {showAddForm ? 'Cancel' : 'Add Project'}
+                </button>
+              </div>
 
-            {showAddForm && (
+              {showAddForm && (
               <div className="add-project-form">
                 <form onSubmit={handleSubmitProject}>
                   <div className="form-row">
@@ -633,8 +636,20 @@ const Projects = () => {
                   </div>
                 </form>
               </div>
-            )}
-          </div>
+              )}
+            </div>
+          ) : (
+            <div className="add-project-section locked">
+              <div className="add-project-header">
+                <h2>Add Your Own Project</h2>
+                <p>Sign in to add, edit, or delete your personal projects.</p>
+                <a className="btn btn-secondary" href="/signin">
+                  <i className="fas fa-sign-in-alt"></i>
+                  Sign In to Manage Projects
+                </a>
+              </div>
+            </div>
+          )}
 
           {!loading && (
           <div className="projects-cta">

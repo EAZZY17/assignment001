@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { servicesAPI } from '../services/api';
+import { useAuth } from '../contexts/AuthContext';
 import './Services.css';
 
 const Services = () => {
+  const { isAuthenticated } = useAuth();
   const [showAddForm, setShowAddForm] = useState(false);
   const [editingServiceId, setEditingServiceId] = useState(null);
   const [userServices, setUserServices] = useState(() => {
@@ -269,7 +271,7 @@ const Services = () => {
                     <span className="price">{service.pricing}</span>
                   </div>
 
-                  {service.isUserService && (
+                  {service.isUserService && isAuthenticated && (
                     <div className="service-actions">
                       <button 
                         className="service-action-btn edit-btn"
@@ -295,32 +297,33 @@ const Services = () => {
           </div>
 
           {/* Add Your Own Service Section */}
-          <div className="add-service-section">
-            <div className="add-service-header">
-              <h2>{editingServiceId ? 'Edit Service' : 'Add Your Own Service'}</h2>
-              <p>{editingServiceId ? 'Update your service details' : 'Add new services you can offer'}</p>
-              <button 
-                className="btn btn-secondary"
-                onClick={() => {
-                  setShowAddForm(!showAddForm);
-                  if (showAddForm) {
-                    setEditingServiceId(null);
-                    setFormData({
-                      title: '',
-                      description: '',
-                      features: '',
-                      pricing: '',
-                      icon: 'fas fa-code'
-                    });
-                  }
-                }}
-              >
-                <i className={`fas ${showAddForm ? 'fa-times' : 'fa-plus'}`}></i>
-                {showAddForm ? 'Cancel' : 'Add Service'}
-              </button>
-            </div>
+          {isAuthenticated ? (
+            <div className="add-service-section">
+              <div className="add-service-header">
+                <h2>{editingServiceId ? 'Edit Service' : 'Add Your Own Service'}</h2>
+                <p>{editingServiceId ? 'Update your service details' : 'Add new services you can offer'}</p>
+                <button 
+                  className="btn btn-secondary"
+                  onClick={() => {
+                    setShowAddForm(!showAddForm);
+                    if (showAddForm) {
+                      setEditingServiceId(null);
+                      setFormData({
+                        title: '',
+                        description: '',
+                        features: '',
+                        pricing: '',
+                        icon: 'fas fa-code'
+                      });
+                    }
+                  }}
+                >
+                  <i className={`fas ${showAddForm ? 'fa-times' : 'fa-plus'}`}></i>
+                  {showAddForm ? 'Cancel' : 'Add Service'}
+                </button>
+              </div>
 
-            {showAddForm && (
+              {showAddForm && (
               <div className="add-service-form">
                 <form onSubmit={handleSubmitService}>
                   <div className="form-group">
@@ -396,8 +399,20 @@ const Services = () => {
                   </div>
                 </form>
               </div>
-            )}
-          </div>
+              )}
+            </div>
+          ) : (
+            <div className="add-service-section locked">
+              <div className="add-service-header">
+                <h2>Add Your Own Service</h2>
+                <p>Sign in to add, edit, or delete your personal services.</p>
+                <a className="btn btn-secondary" href="/signin">
+                  <i className="fas fa-sign-in-alt"></i>
+                  Sign In to Manage Services
+                </a>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 

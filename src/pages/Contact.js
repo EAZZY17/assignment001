@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { contactsAPI } from '../services/api';
+import { useAuth } from '../contexts/AuthContext';
 import './Contact.css';
 
 const Contact = () => {
+  const { isAuthenticated } = useAuth();
   const [contacts, setContacts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showContactsList, setShowContactsList] = useState(false);
@@ -241,27 +243,29 @@ const Contact = () => {
                   <h2>{editingContactId ? 'Edit Contact' : 'Send Me a Message'}</h2>
                   <p>{editingContactId ? 'Update contact information' : "Fill out the form below and I'll get back to you as soon as possible."}</p>
                 </div>
-                <button 
-                  className="btn btn-secondary"
-                  onClick={() => {
-                    setShowContactsList(!showContactsList);
-                    if (showContactsList) {
-                      setEditingContactId(null);
-                      setFormData({
-                        firstName: '',
-                        lastName: '',
-                        email: '',
-                        phone: '',
-                        message: ''
-                      });
-                    } else {
-                      fetchContacts();
-                    }
-                  }}
-                >
-                  <i className={`fas ${showContactsList ? 'fa-times' : 'fa-list'}`}></i>
-                  {showContactsList ? 'Hide Contacts' : 'View All Contacts'}
-                </button>
+                {isAuthenticated && (
+                  <button 
+                    className="btn btn-secondary"
+                    onClick={() => {
+                      setShowContactsList(!showContactsList);
+                      if (showContactsList) {
+                        setEditingContactId(null);
+                        setFormData({
+                          firstName: '',
+                          lastName: '',
+                          email: '',
+                          phone: '',
+                          message: ''
+                        });
+                      } else {
+                        fetchContacts();
+                      }
+                    }}
+                  >
+                    <i className={`fas ${showContactsList ? 'fa-times' : 'fa-list'}`}></i>
+                    {showContactsList ? 'Hide Contacts' : 'View All Contacts'}
+                  </button>
+                )}
               </div>
 
               {submitSuccess && (
@@ -425,24 +429,26 @@ const Contact = () => {
                                 </p>
                               )}
                             </div>
-                            <div className="contact-card-actions">
-                              <button 
-                                className="contact-action-btn edit-btn"
-                                onClick={() => handleEditContact(contact)}
-                                title="Edit Contact"
-                              >
-                                <i className="fas fa-edit"></i>
-                                Edit
-                              </button>
-                              <button 
-                                className="contact-action-btn delete-btn"
-                                onClick={() => handleDeleteContact(contact._id)}
-                                title="Delete Contact"
-                              >
-                                <i className="fas fa-trash"></i>
-                                Delete
-                              </button>
-                            </div>
+                            {isAuthenticated && (
+                              <div className="contact-card-actions">
+                                <button 
+                                  className="contact-action-btn edit-btn"
+                                  onClick={() => handleEditContact(contact)}
+                                  title="Edit Contact"
+                                >
+                                  <i className="fas fa-edit"></i>
+                                  Edit
+                                </button>
+                                <button 
+                                  className="contact-action-btn delete-btn"
+                                  onClick={() => handleDeleteContact(contact._id)}
+                                  title="Delete Contact"
+                                >
+                                  <i className="fas fa-trash"></i>
+                                  Delete
+                                </button>
+                              </div>
+                            )}
                           </div>
                         </div>
                       ))}
