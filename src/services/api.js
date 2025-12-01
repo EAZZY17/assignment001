@@ -13,24 +13,45 @@ const getApiBaseUrl = () => {
 const API_BASE_URL = getApiBaseUrl();
 
 /**
- * Generic API request handler
+ * Get authentication token from localStorage
  */
-async function apiRequest(endpoint, options = {}) {
+const getAuthToken = () => {
+  return localStorage.getItem('authToken');
+};
+
+/**
+ * Generic API request handler
+ * @param {string} endpoint - API endpoint
+ * @param {object} options - Request options
+ * @param {boolean} requireAuth - Whether to include authentication token (default: false)
+ */
+async function apiRequest(endpoint, options = {}, requireAuth = false) {
   const url = `${API_BASE_URL}${endpoint}`;
+  const headers = {
+    'Content-Type': 'application/json',
+    ...options.headers,
+  };
+
+  // Add authentication token if required
+  if (requireAuth) {
+    const token = getAuthToken();
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`;
+    }
+  }
+
   const config = {
-    headers: {
-      'Content-Type': 'application/json',
-      ...options.headers,
-    },
+    headers,
     ...options,
   };
 
   try {
-    console.log(`[API] Making request to: ${url}`, config.method || 'GET');
+    if (process.env.NODE_ENV === 'development') {
+      console.log(`[API] Making request to: ${url}`, config.method || 'GET');
+    }
     const response = await fetch(url, config);
     
     // Check if response has content before parsing
-    const contentType = response.headers.get('content-type');
     const text = await response.text();
     
     if (!response.ok) {
@@ -54,7 +75,9 @@ async function apiRequest(endpoint, options = {}) {
           };
         }
       }
-      console.error(`[API] Request failed: ${response.status}`, errorData);
+      if (process.env.NODE_ENV === 'development') {
+        console.error(`[API] Request failed: ${response.status}`, errorData);
+      }
       throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
     }
     
@@ -68,19 +91,27 @@ async function apiRequest(endpoint, options = {}) {
     try {
       data = JSON.parse(text);
     } catch (parseError) {
-      console.error(`[API] Failed to parse JSON response from ${url}:`, parseError);
+      if (process.env.NODE_ENV === 'development') {
+        console.error(`[API] Failed to parse JSON response from ${url}:`, parseError);
+      }
       throw new Error('Invalid response from server. The backend may not be properly configured.');
     }
     
-    console.log(`[API] Request successful: ${url}`, data);
+    if (process.env.NODE_ENV === 'development') {
+      console.log(`[API] Request successful: ${url}`, data);
+    }
     return data;
   } catch (error) {
     // Handle network errors and provide user-friendly messages
     if (error.name === 'TypeError' && error.message.includes('fetch')) {
-      console.error(`[API] Network error for ${url}:`, error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error(`[API] Network error for ${url}:`, error);
+      }
       throw new Error('Cannot connect to the server. Please check if the backend API is deployed and accessible.');
     }
-    console.error(`[API] Request error for ${url}:`, error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error(`[API] Request error for ${url}:`, error);
+    }
     throw error;
   }
 }
@@ -92,14 +123,14 @@ export const projectsAPI = {
   create: (data) => apiRequest('/api/projects', {
     method: 'POST',
     body: JSON.stringify(data),
-  }),
+  }, true), // requireAuth = true
   update: (id, data) => apiRequest(`/api/projects/${id}`, {
     method: 'PUT',
     body: JSON.stringify(data),
-  }),
+  }, true), // requireAuth = true
   delete: (id) => apiRequest(`/api/projects/${id}`, {
     method: 'DELETE',
-  }),
+  }, true), // requireAuth = true
 };
 
 // Services API
@@ -109,17 +140,17 @@ export const servicesAPI = {
   create: (data) => apiRequest('/api/services', {
     method: 'POST',
     body: JSON.stringify(data),
-  }),
+  }, true), // requireAuth = true
   update: (id, data) => apiRequest(`/api/services/${id}`, {
     method: 'PUT',
     body: JSON.stringify(data),
-  }),
+  }, true), // requireAuth = true
   delete: (id) => apiRequest(`/api/services/${id}`, {
     method: 'DELETE',
-  }),
+  }, true), // requireAuth = true
   deleteAll: () => apiRequest('/api/services', {
     method: 'DELETE',
-  }),
+  }, true), // requireAuth = true
 };
 
 // Contacts API
@@ -129,14 +160,14 @@ export const contactsAPI = {
   create: (data) => apiRequest('/api/contacts', {
     method: 'POST',
     body: JSON.stringify(data),
-  }),
+  }, true), // requireAuth = true
   update: (id, data) => apiRequest(`/api/contacts/${id}`, {
     method: 'PUT',
     body: JSON.stringify(data),
-  }),
+  }, true), // requireAuth = true
   delete: (id) => apiRequest(`/api/contacts/${id}`, {
     method: 'DELETE',
-  }),
+  }, true), // requireAuth = true
 };
 
 // Users API
@@ -146,17 +177,17 @@ export const usersAPI = {
   create: (data) => apiRequest('/api/users', {
     method: 'POST',
     body: JSON.stringify(data),
-  }),
+  }), // Sign up - no auth required
   update: (id, data) => apiRequest(`/api/users/${id}`, {
     method: 'PUT',
     body: JSON.stringify(data),
-  }),
+  }, true), // requireAuth = true
   delete: (id) => apiRequest(`/api/users/${id}`, {
     method: 'DELETE',
-  }),
+  }, true), // requireAuth = true
   deleteAll: () => apiRequest('/api/users', {
     method: 'DELETE',
-  }),
+  }, true), // requireAuth = true
 };
 
 const api = {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { contactsAPI } from '../services/api';
 import './Contact.css';
 
@@ -18,11 +18,9 @@ const Contact = () => {
   const [submitError, setSubmitError] = useState(null);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
-  useEffect(() => {
-    fetchContacts();
-  }, []);
+  
 
-  const fetchContacts = async () => {
+  const fetchContacts = useCallback(async () => {
     try {
       setLoading(true);
       console.log('🔄 Fetching contacts from API...');
@@ -45,7 +43,11 @@ const Contact = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [showContactsList]);
+
+  useEffect(() => {
+    fetchContacts();
+  }, [fetchContacts]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

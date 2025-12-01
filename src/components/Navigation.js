@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 import Logo from './Logo';
 import './Navigation.css';
 
@@ -7,6 +8,8 @@ const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const { isAuthenticated, user, signOut } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,6 +26,12 @@ const Navigation = () => {
 
   const closeMenu = () => {
     setIsMenuOpen(false);
+  };
+
+  const handleSignOut = () => {
+    signOut();
+    navigate('/');
+    closeMenu();
   };
 
   const navItems = [
@@ -62,6 +71,48 @@ const Navigation = () => {
               Resume
             </a>
           </li>
+          {isAuthenticated ? (
+            <>
+              <li className="nav-item">
+                <span className="nav-link user-info">
+                  <i className="fas fa-user"></i>
+                  {user?.firstName} {user?.lastName}
+                </span>
+              </li>
+              <li className="nav-item">
+                <button
+                  className="nav-link nav-button"
+                  onClick={handleSignOut}
+                >
+                  <i className="fas fa-sign-out-alt"></i>
+                  Sign Out
+                </button>
+              </li>
+            </>
+          ) : (
+            <>
+              <li className="nav-item">
+                <Link
+                  to="/signin"
+                  className={`nav-link ${location.pathname === '/signin' ? 'active' : ''}`}
+                  onClick={closeMenu}
+                >
+                  <i className="fas fa-sign-in-alt"></i>
+                  Sign In
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  to="/signup"
+                  className={`nav-link ${location.pathname === '/signup' ? 'active' : ''}`}
+                  onClick={closeMenu}
+                >
+                  <i className="fas fa-user-plus"></i>
+                  Sign Up
+                </Link>
+              </li>
+            </>
+          )}
         </ul>
 
         <div className={`hamburger ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}>

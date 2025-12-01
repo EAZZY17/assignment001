@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quick Cleanup</title>
+</head>
+<body>
+    <h1>Quick Cleanup</h1>
+    <p>Open this page, then open DevTools (F12) and run in console:</p>
+    <pre>
+localStorage.removeItem('userProjects');
+location.reload();
+    </pre>
+    <script>
+        // Auto-run cleanup
+        localStorage.removeItem('userProjects');
+        console.log('✅ Cleared userProjects from localStorage');
+        console.log('Refresh the page to see changes');
+    </script>
+</body>
+</html>
+

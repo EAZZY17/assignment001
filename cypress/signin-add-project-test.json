@@ -1,0 +1,80 @@
+{
+  "testName": "Sign In and Add Project Test",
+  "description": "Test to verify user can sign in and add a new project",
+  "prerequisites": [
+    "User account must exist",
+    "User must be signed out"
+  ],
+  "steps": [
+    {
+      "action": "navigate",
+      "url": "/signin",
+      "description": "Navigate to sign in page"
+    },
+    {
+      "action": "fill",
+      "field": "email",
+      "value": "testuser@example.com",
+      "description": "Enter email address"
+    },
+    {
+      "action": "fill",
+      "field": "password",
+      "value": "testpassword123",
+      "description": "Enter password"
+    },
+    {
+      "action": "submit",
+      "form": "signin",
+      "description": "Submit sign in form"
+    },
+    {
+      "action": "verify",
+      "expected": "Redirect to projects page",
+      "url": "/projects",
+      "description": "Verify successful sign in"
+    },
+    {
+      "action": "click",
+      "element": "Add Project button",
+      "description": "Click Add Project button"
+    },
+    {
+      "action": "fill",
+      "field": "title",
+      "value": "Test Project",
+      "description": "Enter project title"
+    },
+    {
+      "action": "fill",
+      "field": "description",
+      "value": "This is a test project",
+      "description": "Enter project description"
+    },
+    {
+      "action": "fill",
+      "field": "technologies",
+      "value": "React, Node.js",
+      "description": "Enter technologies used"
+    },
+    {
+      "action": "fill",
+      "field": "github",
+      "value": "https://github.com/test/project",
+      "description": "Enter GitHub repository link"
+    },
+    {
+      "action": "submit",
+      "form": "project",
+      "description": "Submit project form"
+    },
+    {
+      "action": "verify",
+      "expected": "Project appears in projects list",
+      "element": "Test Project",
+      "description": "Verify project was added successfully"
+    }
+  ],
+  "expectedResult": "User signs in successfully and adds a new project that appears in the projects list"
+}
+

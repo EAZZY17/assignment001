@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { projectsAPI } from '../services/api';
 import './Projects.css';
 
@@ -77,8 +77,11 @@ const Projects = () => {
         setError(null);
         const data = await projectsAPI.getAll();
         
-        console.log('✅ Projects fetched from backend:', data);
-        console.log(`📊 Total projects: ${data?.length || 0}`);
+        // Only log in development
+        if (process.env.NODE_ENV === 'development') {
+          console.log('✅ Projects fetched from backend:', data);
+          console.log(`📊 Total projects: ${data?.length || 0}`);
+        }
         
         // Always prioritize fallback projects from public folder
         // These are your main projects that should always be displayed
@@ -114,9 +117,13 @@ const Projects = () => {
               }
             }
           });
-          console.log(`✅ Loaded ${allProjects.length} projects (${fallbackProjects.length} from public folder)`);
+          if (process.env.NODE_ENV === 'development') {
+            console.log(`✅ Loaded ${allProjects.length} projects (${fallbackProjects.length} from public folder)`);
+          }
         } else {
-          console.log(`✅ Using ${fallbackProjects.length} projects from public folder (backend empty or unavailable)`);
+          if (process.env.NODE_ENV === 'development') {
+            console.log(`✅ Using ${fallbackProjects.length} projects from public folder (backend empty or unavailable)`);
+          }
         }
         
         // Filter out any projects without title or description, and excluded titles
@@ -178,9 +185,13 @@ const Projects = () => {
           category: formData.category,
           image: null
         });
-        console.log('✅ Project updated in backend');
+        if (process.env.NODE_ENV === 'development') {
+          console.log('✅ Project updated in backend');
+        }
       } catch (err) {
-        console.log('⚠️ Could not update in backend, using localStorage:', err);
+        if (process.env.NODE_ENV === 'development') {
+          console.log('⚠️ Could not update in backend, using localStorage:', err);
+        }
       }
       
       // Update in localStorage
@@ -198,7 +209,7 @@ const Projects = () => {
         title: formData.title,
         description: formData.description,
         technologies: technologies,
-        github: formData.github,
+        github: formData.github || null,
         demo: formData.demo || null,
         role: formData.role || null,
         outcome: formData.outcome || null,
@@ -226,9 +237,13 @@ const Projects = () => {
         if (backendResponse && backendResponse._id) {
           newProject._id = backendResponse._id;
         }
-        console.log('✅ Project saved to backend');
+        if (process.env.NODE_ENV === 'development') {
+          console.log('✅ Project saved to backend');
+        }
       } catch (err) {
-        console.log('⚠️ Could not save to backend, using localStorage:', err);
+        if (process.env.NODE_ENV === 'development') {
+          console.log('⚠️ Could not save to backend, using localStorage:', err);
+        }
       }
       
       // Add to user projects (localStorage)
@@ -279,9 +294,13 @@ const Projects = () => {
     // Try to delete from backend
     try {
       await projectsAPI.delete(projectId);
-      console.log('✅ Project deleted from backend');
-    } catch (err) {
-      console.log('⚠️ Could not delete from backend, removing from localStorage:', err);
+        if (process.env.NODE_ENV === 'development') {
+          console.log('✅ Project deleted from backend');
+        }
+      } catch (err) {
+        if (process.env.NODE_ENV === 'development') {
+          console.log('⚠️ Could not delete from backend, removing from localStorage:', err);
+        }
     }
     
     // Remove from localStorage
@@ -292,9 +311,12 @@ const Projects = () => {
     alert('Project deleted successfully!');
   };
 
-  // Note: Backend model only has: title, completion (Date), description
-  // Filtering by category is not supported by backend, so we'll show all projects
-  const filteredProjects = projects;
+  // Memoize filtered projects to avoid recalculating on every render
+  const filteredProjects = useMemo(() => {
+    return projects;
+  }, [projects]);
+
+  // Note: calling the underlying handlers directly keeps lints simple
 
   return (
     <div className="projects-page">
@@ -341,6 +363,11 @@ const Projects = () => {
                         src={project.image} 
                         alt={project.title}
                         className="project-screenshot"
+                        loading="lazy"
+                        decoding="async"
+                        width="400"
+                        height="300"
+                        style={{ aspectRatio: '4/3', objectFit: 'cover' }}
                         onError={(e) => {
                           // Fallback to placeholder if image fails to load
                           e.target.style.display = 'none';
@@ -546,14 +573,13 @@ const Projects = () => {
 
                   <div className="form-row">
                     <div className="form-group">
-                      <label htmlFor="github">GitHub Repository Link *</label>
+                      <label htmlFor="github">GitHub Repository Link</label>
                       <input
                         type="url"
                         id="github"
                         value={formData.github}
                         onChange={(e) => setFormData({...formData, github: e.target.value})}
                         placeholder="https://github.com/username/repository"
-                        required
                       />
                     </div>
                     <div className="form-group">

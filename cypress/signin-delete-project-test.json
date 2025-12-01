@@ -1,0 +1,58 @@
+{
+  "testName": "Sign In and Delete Project Test",
+  "description": "Test to verify user can sign in and delete an existing project",
+  "prerequisites": [
+    "User account must exist",
+    "At least one project must exist",
+    "User must be signed out"
+  ],
+  "steps": [
+    {
+      "action": "navigate",
+      "url": "/signin",
+      "description": "Navigate to sign in page"
+    },
+    {
+      "action": "fill",
+      "field": "email",
+      "value": "testuser@example.com",
+      "description": "Enter email address"
+    },
+    {
+      "action": "fill",
+      "field": "password",
+      "value": "testpassword123",
+      "description": "Enter password"
+    },
+    {
+      "action": "submit",
+      "form": "signin",
+      "description": "Submit sign in form"
+    },
+    {
+      "action": "verify",
+      "expected": "Redirect to projects page",
+      "url": "/projects",
+      "description": "Verify successful sign in"
+    },
+    {
+      "action": "click",
+      "element": "Delete button on existing project",
+      "description": "Click Delete button for a project"
+    },
+    {
+      "action": "confirm",
+      "dialog": "confirmation",
+      "description": "Confirm deletion in confirmation dialog"
+    },
+    {
+      "action": "verify",
+      "expected": "Project removed from list",
+      "element": "Project title",
+      "shouldNotExist": true,
+      "description": "Verify project was deleted successfully"
+    }
+  ],
+  "expectedResult": "User signs in successfully and deletes an existing project, which is removed from the projects list"
+}
+

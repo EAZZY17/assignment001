@@ -67,6 +67,29 @@
   width: 100%;
 }
 
+.user-info {
+  color: #667eea !important;
+  font-weight: 600;
+  cursor: default;
+}
+
+.user-info::after {
+  display: none;
+}
+
+.nav-button {
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  padding: 0.5rem 0;
+}
+
+.nav-button:hover {
+  color: #dc2626;
+}
+
 .hamburger {
   display: none;
   flex-direction: column;

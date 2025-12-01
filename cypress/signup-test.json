@@ -1,0 +1,54 @@
+{
+  "testName": "Sign Up Test",
+  "description": "Test to verify user can successfully sign up for a new account",
+  "steps": [
+    {
+      "action": "navigate",
+      "url": "/signup",
+      "description": "Navigate to sign up page"
+    },
+    {
+      "action": "fill",
+      "field": "firstName",
+      "value": "Test",
+      "description": "Enter first name"
+    },
+    {
+      "action": "fill",
+      "field": "lastName",
+      "value": "User",
+      "description": "Enter last name"
+    },
+    {
+      "action": "fill",
+      "field": "email",
+      "value": "testuser@example.com",
+      "description": "Enter email address"
+    },
+    {
+      "action": "fill",
+      "field": "password",
+      "value": "testpassword123",
+      "description": "Enter password"
+    },
+    {
+      "action": "fill",
+      "field": "confirmPassword",
+      "value": "testpassword123",
+      "description": "Confirm password"
+    },
+    {
+      "action": "submit",
+      "form": "signup",
+      "description": "Submit sign up form"
+    },
+    {
+      "action": "verify",
+      "expected": "Redirect to sign in page",
+      "url": "/signin",
+      "description": "Verify successful sign up and redirect"
+    }
+  ],
+  "expectedResult": "User account created successfully and redirected to sign in page"
+}
+
