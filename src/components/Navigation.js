@@ -6,6 +6,7 @@ import './Navigation.css';
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAuthDropdownOpen, setIsAuthDropdownOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -20,6 +21,18 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    // Close dropdown when clicking outside
+    const handleClickOutside = (event) => {
+      if (isAuthDropdownOpen && !event.target.closest('.auth-dropdown-container')) {
+        setIsAuthDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isAuthDropdownOpen]);
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -28,10 +41,19 @@ const Navigation = () => {
     setIsMenuOpen(false);
   };
 
+  const toggleAuthDropdown = () => {
+    setIsAuthDropdownOpen(!isAuthDropdownOpen);
+  };
+
+  const closeAuthDropdown = () => {
+    setIsAuthDropdownOpen(false);
+  };
+
   const handleSignOut = () => {
     signOut();
     navigate('/');
     closeMenu();
+    closeAuthDropdown();
   };
 
   const navItems = [
@@ -94,28 +116,44 @@ const Navigation = () => {
               </li>
             </>
           ) : (
-            <>
-              <li className="nav-item">
-                <Link
-                  to="/signin"
-                  className="nav-button nav-button-signin"
-                  onClick={closeMenu}
-                >
-                  <i className="fas fa-sign-in-alt"></i>
-                  Sign In
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  to="/signup"
-                  className="nav-button nav-button-signup"
-                  onClick={closeMenu}
-                >
-                  <i className="fas fa-user-plus"></i>
-                  Sign Up
-                </Link>
-              </li>
-            </>
+            <li className="nav-item auth-dropdown-container">
+              <button
+                className="nav-button nav-button-account"
+                onClick={toggleAuthDropdown}
+                aria-expanded={isAuthDropdownOpen}
+                aria-haspopup="true"
+              >
+                <i className="fas fa-user-circle"></i>
+                Account
+                <i className={`fas fa-chevron-${isAuthDropdownOpen ? 'up' : 'down'} dropdown-arrow`}></i>
+              </button>
+              {isAuthDropdownOpen && (
+                <div className="auth-dropdown">
+                  <Link
+                    to="/signin"
+                    className="auth-dropdown-item"
+                    onClick={() => {
+                      closeMenu();
+                      closeAuthDropdown();
+                    }}
+                  >
+                    <i className="fas fa-sign-in-alt"></i>
+                    Sign In
+                  </Link>
+                  <Link
+                    to="/signup"
+                    className="auth-dropdown-item"
+                    onClick={() => {
+                      closeMenu();
+                      closeAuthDropdown();
+                    }}
+                  >
+                    <i className="fas fa-user-plus"></i>
+                    Sign Up
+                  </Link>
+                </div>
+              )}
+            </li>
           )}
         </ul>
 
