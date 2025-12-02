@@ -74,14 +74,18 @@ const Navigation = () => {
           {isAuthenticated ? (
             <>
               <li className="nav-item">
-                <span className="nav-link user-info">
-                  <i className="fas fa-user"></i>
-                  {user?.firstName} {user?.lastName}
-                </span>
+                <div className="user-display">
+                  <div className="user-avatar">
+                    <i className="fas fa-user"></i>
+                  </div>
+                  <span className="user-name">
+                    {user?.firstName} {user?.lastName}
+                  </span>
+                </div>
               </li>
               <li className="nav-item">
                 <button
-                  className="nav-link nav-button"
+                  className="nav-button nav-button-signout"
                   onClick={handleSignOut}
                 >
                   <i className="fas fa-sign-out-alt"></i>
@@ -94,7 +98,7 @@ const Navigation = () => {
               <li className="nav-item">
                 <Link
                   to="/signin"
-                  className={`nav-link ${location.pathname === '/signin' ? 'active' : ''}`}
+                  className="nav-button nav-button-signin"
                   onClick={closeMenu}
                 >
                   <i className="fas fa-sign-in-alt"></i>
@@ -104,7 +108,7 @@ const Navigation = () => {
               <li className="nav-item">
                 <Link
                   to="/signup"
-                  className={`nav-link ${location.pathname === '/signup' ? 'active' : ''}`}
+                  className="nav-button nav-button-signup"
                   onClick={closeMenu}
                 >
                   <i className="fas fa-user-plus"></i>
