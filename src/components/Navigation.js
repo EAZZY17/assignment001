@@ -117,7 +117,6 @@ const Navigation = () => {
                 <div className="user-avatar">
                   {user?.firstName?.[0]?.toUpperCase()}{user?.lastName?.[0]?.toUpperCase()}
                 </div>
-                <i className={`fas fa-chevron-${isUserDropdownOpen ? 'up' : 'down'} user-dropdown-arrow`}></i>
               </button>
               {isUserDropdownOpen && (
                 <div className="user-dropdown">
