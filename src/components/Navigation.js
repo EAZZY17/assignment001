@@ -7,6 +7,7 @@ import './Navigation.css';
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAuthDropdownOpen, setIsAuthDropdownOpen] = useState(false);
+  const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -27,11 +28,14 @@ const Navigation = () => {
       if (isAuthDropdownOpen && !event.target.closest('.auth-dropdown-container')) {
         setIsAuthDropdownOpen(false);
       }
+      if (isUserDropdownOpen && !event.target.closest('.user-dropdown-container')) {
+        setIsUserDropdownOpen(false);
+      }
     };
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [isAuthDropdownOpen]);
+  }, [isAuthDropdownOpen, isUserDropdownOpen]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -49,11 +53,20 @@ const Navigation = () => {
     setIsAuthDropdownOpen(false);
   };
 
+  const toggleUserDropdown = () => {
+    setIsUserDropdownOpen(!isUserDropdownOpen);
+  };
+
+  const closeUserDropdown = () => {
+    setIsUserDropdownOpen(false);
+  };
+
   const handleSignOut = () => {
     signOut();
     navigate('/');
     closeMenu();
     closeAuthDropdown();
+    closeUserDropdown();
   };
 
   const navItems = [
@@ -94,27 +107,44 @@ const Navigation = () => {
             </a>
           </li>
           {isAuthenticated ? (
-            <>
-              <li className="nav-item">
-                <div className="user-display">
-                  <div className="user-avatar">
-                    <i className="fas fa-user"></i>
-                  </div>
-                  <span className="user-name">
-                    {user?.firstName} {user?.lastName}
-                  </span>
+            <li className="nav-item user-dropdown-container">
+              <button
+                className="user-avatar-button"
+                onClick={toggleUserDropdown}
+                aria-expanded={isUserDropdownOpen}
+                aria-haspopup="true"
+              >
+                <div className="user-avatar">
+                  {user?.firstName?.[0]?.toUpperCase()}{user?.lastName?.[0]?.toUpperCase()}
                 </div>
-              </li>
-              <li className="nav-item">
-                <button
-                  className="nav-button nav-button-signout"
-                  onClick={handleSignOut}
-                >
-                  <i className="fas fa-sign-out-alt"></i>
-                  Sign Out
-                </button>
-              </li>
-            </>
+                <i className={`fas fa-chevron-${isUserDropdownOpen ? 'up' : 'down'} user-dropdown-arrow`}></i>
+              </button>
+              {isUserDropdownOpen && (
+                <div className="user-dropdown">
+                  <div className="user-dropdown-header">
+                    <div className="user-dropdown-avatar">
+                      {user?.firstName?.[0]?.toUpperCase()}{user?.lastName?.[0]?.toUpperCase()}
+                    </div>
+                    <div className="user-dropdown-info">
+                      <div className="user-dropdown-name">
+                        {user?.firstName} {user?.lastName}
+                      </div>
+                      <div className="user-dropdown-email">
+                        {user?.email}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="user-dropdown-divider"></div>
+                  <button
+                    className="user-dropdown-item user-dropdown-signout"
+                    onClick={handleSignOut}
+                  >
+                    <i className="fas fa-sign-out-alt"></i>
+                    Sign Out
+                  </button>
+                </div>
+              )}
+            </li>
           ) : (
             <li className="nav-item auth-dropdown-container">
               <button
