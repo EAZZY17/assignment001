@@ -14,9 +14,7 @@
     "dev": "cross-env PORT=3001 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -38,7 +36,6 @@
   },
   "proxy": "http://localhost:3000",
   "devDependencies": {
-    "cross-env": "^10.1.0",
-    "cypress": "^15.7.0"
+    "cross-env": "^10.1.0"
   }
 }
