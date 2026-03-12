@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Services.css';
 
 const Services = () => {
@@ -217,14 +218,14 @@ const Services = () => {
             <h2>Ready to Start Your Project?</h2>
             <p>Let's discuss your requirements and create something amazing together</p>
             <div className="cta-buttons">
-              <a href="/contact" className="btn btn-primary btn-large">
+              <Link to="/contact" className="btn btn-primary btn-large">
                 <i className="fas fa-envelope"></i>
                 Get Free Quote
-              </a>
-              <a href="/projects" className="btn btn-secondary btn-large">
+              </Link>
+              <Link to="/projects" className="btn btn-secondary btn-large">
                 <i className="fas fa-eye"></i>
                 View My Work
-              </a>
+              </Link>
             </div>
           </div>
         </div>

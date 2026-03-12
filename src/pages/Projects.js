@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import { projectsAPI } from '../services/api';
 import './Projects.css';
 
@@ -326,10 +327,10 @@ const Projects = () => {
           <div className="projects-cta">
             <h2>Interested in Working Together?</h2>
             <p>Let's discuss how we can bring your next project to life</p>
-            <a href="/contact" className="btn btn-primary btn-large">
+            <Link to="/contact" className="btn btn-primary btn-large">
               <i className="fas fa-envelope"></i>
               Get In Touch
-            </a>
+            </Link>
           </div>
           )}
         </div>
