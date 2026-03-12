@@ -9,12 +9,12 @@
 .logo-shape {
   width: 40px;
   height: 40px;
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-hover));
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 4px 15px var(--color-shadow-accent);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -55,11 +55,11 @@
 
 .logo:hover .logo-shape {
   transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+  box-shadow: 0 6px 20px var(--color-shadow-accent);
 }
 
 .logo:hover .logo-text {
-  color: #2563eb;
+  color: var(--color-accent);
 }
 
 /* Size variants */
