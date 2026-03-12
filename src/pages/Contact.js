@@ -1,14 +1,8 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState } from 'react';
 import { contactsAPI } from '../services/api';
-import { useAuth } from '../contexts/AuthContext';
 import './Contact.css';
 
 const Contact = () => {
-  const { isAuthenticated } = useAuth();
-  const [contacts, setContacts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [showContactsList, setShowContactsList] = useState(false);
-  const [editingContactId, setEditingContactId] = useState(null);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -19,37 +13,6 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState(null);
   const [submitSuccess, setSubmitSuccess] = useState(false);
-
-  
-
-  const fetchContacts = useCallback(async () => {
-    try {
-      setLoading(true);
-      console.log('🔄 Fetching contacts from API...');
-      const data = await contactsAPI.getAll();
-      console.log('✅ Contacts fetched:', data);
-      setContacts(Array.isArray(data) ? data : []);
-      // Clear any previous errors if fetch succeeds
-      setSubmitError(null);
-    } catch (err) {
-      console.error('❌ Error fetching contacts:', err);
-      setContacts([]);
-      // Only show error if user is trying to view contacts list
-      // Don't show error on initial page load to avoid scaring users
-      if (showContactsList) {
-        const errorMsg = err.message?.includes('backend') || err.message?.includes('API') 
-          ? err.message 
-          : 'Failed to load contacts. The backend API may not be available.';
-        setSubmitError(errorMsg);
-      }
-    } finally {
-      setLoading(false);
-    }
-  }, [showContactsList]);
-
-  useEffect(() => {
-    fetchContacts();
-  }, [fetchContacts]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -76,20 +39,8 @@ const Contact = () => {
         message: formData.message.trim()
       };
 
-      if (editingContactId) {
-        // Update existing contact
-        await contactsAPI.update(editingContactId, contactData);
-        console.log('✅ Contact updated successfully');
-        setSubmitSuccess(true);
-        alert('Contact updated successfully!');
-      } else {
-        // Create new contact
-        console.log('📤 Submitting contact:', contactData);
-        const result = await contactsAPI.create(contactData);
-        console.log('✅ Contact submitted successfully:', result);
-        setSubmitSuccess(true);
-        alert('Contact submitted successfully!');
-      }
+      await contactsAPI.create(contactData);
+      setSubmitSuccess(true);
       
       setFormData({
         firstName: '',
@@ -98,12 +49,6 @@ const Contact = () => {
         phone: '',
         message: ''
       });
-      setEditingContactId(null);
-      
-      // Refresh contacts list after a short delay to ensure backend has processed
-      setTimeout(() => {
-        fetchContacts();
-      }, 500);
       
     } catch (err) {
       console.error('❌ Error submitting contact form:', err);
@@ -127,36 +72,6 @@ const Contact = () => {
       setSubmitError(errorMessage);
     } finally {
       setIsSubmitting(false);
-    }
-  };
-
-  const handleEditContact = (contact) => {
-    setFormData({
-      firstName: contact.firstName || '',
-      lastName: contact.lastName || '',
-      email: contact.email || '',
-      phone: contact.phone || '',
-      message: contact.message || ''
-    });
-    setEditingContactId(contact._id);
-    setShowContactsList(false);
-    // Scroll to form
-    window.scrollTo({ top: document.querySelector('.contact-form-section').offsetTop - 100, behavior: 'smooth' });
-  };
-
-  const handleDeleteContact = async (contactId) => {
-    if (!window.confirm('Are you sure you want to delete this contact? This action cannot be undone.')) {
-      return;
-    }
-    
-    try {
-      await contactsAPI.delete(contactId);
-      console.log('✅ Contact deleted successfully');
-      alert('Contact deleted successfully!');
-      fetchContacts(); // Refresh contacts list
-    } catch (err) {
-      console.error('Error deleting contact:', err);
-      alert('Failed to delete contact. Please try again.');
     }
   };
 
@@ -240,32 +155,9 @@ const Contact = () => {
             <div className="contact-form-section">
               <div className="contact-form-header">
                 <div>
-                  <h2>{editingContactId ? 'Edit Contact' : 'Send Me a Message'}</h2>
-                  <p>{editingContactId ? 'Update contact information' : "Fill out the form below and I'll get back to you as soon as possible."}</p>
+                  <h2>Send Me a Message</h2>
+                  <p>Fill out the form below and I'll get back to you as soon as possible. You can also email me directly at edwinmakolo5@gmail.com</p>
                 </div>
-                {isAuthenticated && (
-                  <button 
-                    className="btn btn-secondary"
-                    onClick={() => {
-                      setShowContactsList(!showContactsList);
-                      if (showContactsList) {
-                        setEditingContactId(null);
-                        setFormData({
-                          firstName: '',
-                          lastName: '',
-                          email: '',
-                          phone: '',
-                          message: ''
-                        });
-                      } else {
-                        fetchContacts();
-                      }
-                    }}
-                  >
-                    <i className={`fas ${showContactsList ? 'fa-times' : 'fa-list'}`}></i>
-                    {showContactsList ? 'Hide Contacts' : 'View All Contacts'}
-                  </button>
-                )}
               </div>
 
               {submitSuccess && (
@@ -361,101 +253,18 @@ const Contact = () => {
                     {isSubmitting ? (
                       <>
                         <i className="fas fa-spinner fa-spin"></i>
-                        {editingContactId ? 'Updating...' : 'Sending...'}
+                        Sending...
                       </>
                     ) : (
                       <>
-                        <i className={`fas ${editingContactId ? 'fa-save' : 'fa-paper-plane'}`}></i>
-                        {editingContactId ? 'Update Contact' : 'Send Message'}
+                        <i className="fas fa-paper-plane"></i>
+                        Send Message
                       </>
                     )}
                   </button>
-                  {editingContactId && (
-                    <button 
-                      type="button"
-                      className="btn btn-secondary"
-                      onClick={() => {
-                        setFormData({
-                          firstName: '',
-                          lastName: '',
-                          email: '',
-                          phone: '',
-                          message: ''
-                        });
-                        setEditingContactId(null);
-                      }}
-                    >
-                      Cancel
-                    </button>
-                  )}
                 </div>
               </form>
 
-              {/* Contacts List Section */}
-              {showContactsList && (
-                <div className="contacts-list-section">
-                  <h3>All Contacts ({contacts.length})</h3>
-                  {loading ? (
-                    <div className="loading-state">
-                      <i className="fas fa-spinner fa-spin"></i>
-                      <p>Loading contacts...</p>
-                    </div>
-                  ) : contacts.length === 0 ? (
-                    <div className="empty-state">
-                      <i className="fas fa-inbox"></i>
-                      <p>No contacts yet. Submit the form above to add contacts.</p>
-                    </div>
-                  ) : (
-                    <div className="contacts-grid-list">
-                      {contacts.map(contact => (
-                        <div key={contact._id} className="contact-card">
-                          <div className="contact-card-content">
-                            <div className="contact-card-info">
-                              <h4>{contact.firstName} {contact.lastName}</h4>
-                              <p className="contact-email">
-                                <i className="fas fa-envelope"></i>
-                                {contact.email}
-                              </p>
-                              {contact.phone && (
-                                <p className="contact-phone">
-                                  <i className="fas fa-phone"></i>
-                                  {contact.phone}
-                                </p>
-                              )}
-                              {contact.message && (
-                                <p className="contact-message">
-                                  <i className="fas fa-comment"></i>
-                                  {contact.message}
-                                </p>
-                              )}
-                            </div>
-                            {isAuthenticated && (
-                              <div className="contact-card-actions">
-                                <button 
-                                  className="contact-action-btn edit-btn"
-                                  onClick={() => handleEditContact(contact)}
-                                  title="Edit Contact"
-                                >
-                                  <i className="fas fa-edit"></i>
-                                  Edit
-                                </button>
-                                <button 
-                                  className="contact-action-btn delete-btn"
-                                  onClick={() => handleDeleteContact(contact._id)}
-                                  title="Delete Contact"
-                                >
-                                  <i className="fas fa-trash"></i>
-                                  Delete
-                                </button>
-                              </div>
-                            )}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              )}
             </div>
           </div>
         </div>

@@ -1,32 +1,17 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { projectsAPI } from '../services/api';
-import { useAuth } from '../contexts/AuthContext';
 import './Projects.css';
 
 const Projects = () => {
-  const { isAuthenticated } = useAuth();
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [showAddForm, setShowAddForm] = useState(false);
-  const [editingProjectId, setEditingProjectId] = useState(null);
   const [userProjects, setUserProjects] = useState(() => {
     // Load user projects from localStorage
     const saved = localStorage.getItem('userProjects');
     return saved ? JSON.parse(saved) : [];
   });
   
-  // Form state
-  const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-    technologies: '',
-    github: '',
-    demo: '',
-    role: '',
-    outcome: '',
-    category: 'web'
-  });
 
   // Fallback data - your original projects with all fields
   // Moved outside component to avoid dependency warning
@@ -69,6 +54,45 @@ const Projects = () => {
       demo: '/pokedex.html',
       category: 'web',
       image: '/pokedex-img/logo.png'
+    },
+    {
+      _id: '4',
+      title: 'ParaHelper - AI Paramedic Assistant',
+      description: 'Full-stack AI-powered paramedic assistant that automates form completion through natural language and voice input. Built for the WIMTACH x EffectiveAI Hackathon (March 2026). Features a Node.js/Express backend with a multi-agent pipeline (8 agents) handling transcription correction, intent detection, data extraction, guardrail validation, and PDF export. Integrated OpenRouter (Claude Sonnet) and ChromaDB vector search for intelligent, context-aware responses. React frontend with real-time form panels, confidence scoring indicators, and voice-to-text support.',
+      completion: new Date('2026-03-01'),
+      technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'ChromaDB', 'OpenRouter', 'Claude'],
+      role: 'Full Stack Developer',
+      outcome: 'Built end-to-end AI application demonstrating multi-agent orchestration, RAG with vector search, and voice interface integration.',
+      github: '#',
+      demo: '#',
+      category: 'web',
+      image: null
+    },
+    {
+      _id: '5',
+      title: 'Vending Kitchen System (VKS)',
+      description: 'Led team to 1st place in design challenge hosted by Centennial College and Cenith Energy Corp. (Feb 2025). Directed conceptual design of an automated smart kitchen module for schools, offices, and transit hubs. Covered subsystem integration, scan-to-cook workflow, hardware architecture, and a three-layer IoT dashboard UI.',
+      completion: new Date('2025-02-01'),
+      technologies: ['IoT', 'System Design', 'UI/UX'],
+      role: 'Team Lead & Design Lead',
+      outcome: '1st Place - Design Hackathon. Demonstrated systems thinking and cross-functional design skills.',
+      github: '#',
+      demo: '#',
+      category: 'other',
+      image: null
+    },
+    {
+      _id: '6',
+      title: 'Agile Ticketing & Workflow System',
+      description: 'Full-stack ticketing system with user authentication, role-based access control, and ticket management. Designed backend framework with structured Postman collections for RESTful API endpoints. Implemented Jest for automated testing of routes, validation, and authorization logic. Used Jira for sprint planning, backlog management, and iterative delivery.',
+      completion: new Date('2024-01-01'),
+      technologies: ['Node.js', 'Express', 'MongoDB', 'REST APIs', 'Postman', 'JWT', 'Jest', 'Jira'],
+      role: 'Full Stack Developer',
+      outcome: 'Demonstrated backend architecture, API design, automated testing, and agile methodology.',
+      github: '#',
+      demo: '#',
+      category: 'web',
+      image: null
     }
   ];
 
@@ -453,201 +477,9 @@ const Projects = () => {
                       </div>
                     )}
 
-                    {project.isUserProject && isAuthenticated && (
-                      <div className="project-actions">
-                        <button 
-                          className="project-action-btn edit-btn"
-                          onClick={() => handleEditProject(project)}
-                          title="Edit Project"
-                        >
-                          <i className="fas fa-edit"></i>
-                          Edit
-                        </button>
-                        <button 
-                          className="project-action-btn delete-btn"
-                          onClick={() => handleDeleteProject(project._id)}
-                          title="Delete Project"
-                        >
-                          <i className="fas fa-trash"></i>
-                          Delete
-                        </button>
-                      </div>
-                    )}
                   </div>
                 </div>
               ))}
-            </div>
-          )}
-
-          {/* Add Your Own Project Section */}
-          {isAuthenticated ? (
-            <div className="add-project-section">
-              <div className="add-project-header">
-                <h2>{editingProjectId ? 'Edit Project' : 'Add Your Own Project'}</h2>
-                <p>{editingProjectId ? 'Update your project details' : 'Share your projects with the community'}</p>
-                <button 
-                  className="btn btn-secondary"
-                  onClick={() => {
-                    setShowAddForm(!showAddForm);
-                    if (showAddForm) {
-                      setEditingProjectId(null);
-                      setFormData({
-                        title: '',
-                        description: '',
-                        technologies: '',
-                        github: '',
-                        demo: '',
-                        role: '',
-                        outcome: '',
-                        category: 'web'
-                      });
-                    }
-                  }}
-                >
-                  <i className={`fas ${showAddForm ? 'fa-times' : 'fa-plus'}`}></i>
-                  {showAddForm ? 'Cancel' : 'Add Project'}
-                </button>
-              </div>
-
-              {showAddForm && (
-              <div className="add-project-form">
-                <form onSubmit={handleSubmitProject}>
-                  <div className="form-row">
-                    <div className="form-group">
-                      <label htmlFor="title">Project Title *</label>
-                      <input
-                        type="text"
-                        id="title"
-                        value={formData.title}
-                        onChange={(e) => setFormData({...formData, title: e.target.value})}
-                        placeholder="Enter project title"
-                        required
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="category">Category</label>
-                      <select
-                        id="category"
-                        value={formData.category}
-                        onChange={(e) => setFormData({...formData, category: e.target.value})}
-                      >
-                        <option value="web">Web</option>
-                        <option value="mobile">Mobile</option>
-                        <option value="desktop">Desktop</option>
-                        <option value="other">Other</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div className="form-group">
-                    <label htmlFor="description">Description *</label>
-                    <textarea
-                      id="description"
-                      value={formData.description}
-                      onChange={(e) => setFormData({...formData, description: e.target.value})}
-                      placeholder="Describe your project, its features, and what it does..."
-                      rows="4"
-                      required
-                    />
-                  </div>
-
-                  <div className="form-row">
-                    <div className="form-group">
-                      <label htmlFor="technologies">Technologies Used</label>
-                      <input
-                        type="text"
-                        id="technologies"
-                        value={formData.technologies}
-                        onChange={(e) => setFormData({...formData, technologies: e.target.value})}
-                        placeholder="e.g., React, Node.js, MongoDB (comma separated)"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="role">Your Role</label>
-                      <input
-                        type="text"
-                        id="role"
-                        value={formData.role}
-                        onChange={(e) => setFormData({...formData, role: e.target.value})}
-                        placeholder="e.g., Full Stack Developer"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="form-row">
-                    <div className="form-group">
-                      <label htmlFor="github">GitHub Repository Link</label>
-                      <input
-                        type="url"
-                        id="github"
-                        value={formData.github}
-                        onChange={(e) => setFormData({...formData, github: e.target.value})}
-                        placeholder="https://github.com/username/repository"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="demo">Demo Link</label>
-                      <input
-                        type="url"
-                        id="demo"
-                        value={formData.demo}
-                        onChange={(e) => setFormData({...formData, demo: e.target.value})}
-                        placeholder="https://your-demo-url.com or /your-demo.html"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="form-group">
-                    <label htmlFor="outcome">Outcome / Results</label>
-                    <textarea
-                      id="outcome"
-                      value={formData.outcome}
-                      onChange={(e) => setFormData({...formData, outcome: e.target.value})}
-                      placeholder="What was the outcome or result of this project?"
-                      rows="3"
-                    />
-                  </div>
-
-                  <div className="form-actions">
-                    <button type="submit" className="btn btn-primary">
-                      <i className={`fas ${editingProjectId ? 'fa-save' : 'fa-plus'}`}></i>
-                      {editingProjectId ? 'Update Project' : 'Add Project'}
-                    </button>
-                    <button 
-                      type="button" 
-                      className="btn btn-secondary"
-                      onClick={() => {
-                        setFormData({
-                          title: '',
-                          description: '',
-                          technologies: '',
-                          github: '',
-                          demo: '',
-                          role: '',
-                          outcome: '',
-                          category: 'web'
-                        });
-                        setShowAddForm(false);
-                        setEditingProjectId(null);
-                      }}
-                    >
-                      Cancel
-                    </button>
-                  </div>
-                </form>
-              </div>
-              )}
-            </div>
-          ) : (
-            <div className="add-project-section locked">
-              <div className="add-project-header">
-                <h2>Add Your Own Project</h2>
-                <p>Sign in to add, edit, or delete your personal projects.</p>
-                <a className="btn btn-secondary" href="/signin">
-                  <i className="fas fa-sign-in-alt"></i>
-                  Sign In to Manage Projects
-                </a>
-              </div>
             </div>
           )}
 

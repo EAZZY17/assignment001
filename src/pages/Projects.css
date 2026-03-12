@@ -3,7 +3,7 @@
 }
 
 .projects-hero {
-  background: linear-gradient(135deg, #1f2937, #374151);
+  background: linear-gradient(135deg, #0f172a, #1e293b);
   color: white;
   padding: 100px 0;
   text-align: center;
@@ -71,8 +71,8 @@
 
 .filter-tab:hover,
 .filter-tab.active {
-  border-color: #dc2626;
-  background: #dc2626;
+  border-color: #2563eb;
+  background: #2563eb;
   color: white;
 }
 
@@ -167,7 +167,7 @@
 .project-link {
   padding: 0.75rem 1.5rem;
   background: white;
-  color: #dc2626;
+  color: #2563eb;
   text-decoration: none;
   border-radius: 25px;
   font-weight: 600;
@@ -202,7 +202,7 @@
 }
 
 .project-category {
-  background: #dc2626;
+  background: #2563eb;
   color: white;
   padding: 0.25rem 0.75rem;
   border-radius: 15px;
@@ -296,12 +296,12 @@
 }
 
 .btn-primary {
-  background: #dc2626;
+  background: #2563eb;
   color: white;
 }
 
 .btn-primary:hover {
-  background: #b91c1c;
+  background: #1d4ed8;
   transform: translateY(-2px);
   box-shadow: 0 10px 25px rgba(220, 38, 38, 0.3);
 }
@@ -412,7 +412,7 @@
 }
 
 .project-category {
-  background: #dc2626;
+  background: #2563eb;
   color: white;
   padding: 0.25rem 0.75rem;
   border-radius: 15px;
@@ -479,7 +479,7 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1.5rem;
-  background: #dc2626;
+  background: #2563eb;
   color: white;
   text-decoration: none;
   border-radius: 25px;
@@ -489,7 +489,7 @@
 }
 
 .project-link-btn:hover {
-  background: #b91c1c;
+  background: #1d4ed8;
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(220, 38, 38, 0.3);
 }
@@ -530,12 +530,12 @@
 }
 
 .project-action-btn.delete-btn {
-  background: #dc2626;
+  background: #2563eb;
   color: white;
 }
 
 .project-action-btn.delete-btn:hover {
-  background: #b91c1c;
+  background: #1d4ed8;
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(220, 38, 38, 0.3);
 }
@@ -585,7 +585,7 @@
 }
 
 .error-state i {
-  color: #dc2626;
+  color: #2563eb;
 }
 
 .empty-state i {
@@ -601,7 +601,7 @@
 }
 
 .error-state p {
-  color: #dc2626;
+  color: #2563eb;
 }
 
 .project-date {
@@ -685,7 +685,7 @@
 .form-group textarea:focus,
 .form-group select:focus {
   outline: none;
-  border-color: #dc2626;
+  border-color: #2563eb;
   box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
 }
 
@@ -720,12 +720,12 @@
 }
 
 .form-actions .btn-primary {
-  background: #dc2626;
+  background: #2563eb;
   color: white;
 }
 
 .form-actions .btn-primary:hover {
-  background: #b91c1c;
+  background: #1d4ed8;
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(220, 38, 38, 0.3);
 }

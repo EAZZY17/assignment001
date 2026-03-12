@@ -48,7 +48,7 @@
 
 .nav-link:hover,
 .nav-link.active {
-  color: #dc2626;
+  color: #2563eb;
 }
 
 .nav-link::after {
@@ -58,7 +58,7 @@
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: #dc2626;
+  background-color: #2563eb;
   transition: width 0.3s ease;
 }
 
@@ -195,12 +195,12 @@
 }
 
 .user-dropdown-signout {
-  color: #dc2626;
+  color: #2563eb;
 }
 
 .user-dropdown-signout:hover {
-  background: #fee;
-  color: #c33;
+  background: #eff6ff;
+  color: #1d4ed8;
 }
 
 .user-dropdown-item i {
@@ -251,13 +251,13 @@
 }
 
 .nav-button-signout {
-  color: #dc2626;
-  border: 2px solid #dc2626;
+  color: #2563eb;
+  border: 2px solid #2563eb;
   background: transparent;
 }
 
 .nav-button-signout:hover {
-  background: #dc2626;
+  background: #2563eb;
   color: white;
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);

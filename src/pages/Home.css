@@ -6,7 +6,7 @@
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
   color: white;
   position: relative;
   overflow: hidden;
@@ -46,8 +46,8 @@
 .hero-subtitle {
   font-size: 1.5rem;
   margin-bottom: 1.5rem;
-  opacity: 0.9;
-  color: #e0e7ff;
+  opacity: 0.95;
+  color: #93c5fd;
 }
 
 .hero-description {
@@ -69,7 +69,7 @@
 .mission-statement h2 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  color: #e0e7ff;
+  color: #93c5fd;
 }
 
 .mission-statement p {
@@ -99,24 +99,24 @@
 }
 
 .btn-primary {
-  background: #dc2626;
+  background: #2563eb;
   color: white;
 }
 
 .btn-primary:hover {
-  background: #b91c1c;
-  box-shadow: 0 10px 25px rgba(220, 38, 38, 0.3);
+  background: #1d4ed8;
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35);
 }
 
 .btn-secondary {
   background: transparent;
   color: white;
-  border: 2px solid white;
+  border: 2px solid rgba(255, 255, 255, 0.9);
 }
 
 .btn-secondary:hover {
   background: white;
-  color: #dc2626;
+  color: #1e293b;
 }
 
 .btn-large {
@@ -210,7 +210,7 @@
 .stat-icon {
   width: 60px;
   height: 60px;
-  background: linear-gradient(135deg, #dc2626, #991b1b);
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -226,7 +226,7 @@
 .stat-card h3 {
   font-size: 2rem;
   font-weight: 700;
-  color: #dc2626;
+  color: #2563eb;
   margin-bottom: 0.5rem;
 }
 
@@ -237,7 +237,7 @@
 
 .cta-section {
   padding: 80px 0;
-  background: linear-gradient(135deg, #1f2937, #374151);
+  background: linear-gradient(135deg, #0f172a, #1e293b);
   color: white;
   text-align: center;
 }

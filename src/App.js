@@ -1,13 +1,10 @@
 import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { AuthProvider } from './contexts/AuthContext';
 import Navigation from './components/Navigation';
 import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
 import Contact from './pages/Contact';
-import SignUp from './pages/SignUp';
-import SignIn from './pages/SignIn';
 import './App.css';
 
 // Lazy load Projects component for code splitting and better performance
@@ -15,8 +12,7 @@ const Projects = lazy(() => import('./pages/Projects'));
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
+    <Router>
         <div className="App">
           <Navigation />
           <main>
@@ -53,14 +49,11 @@ function App() {
                 <Route path="/projects" element={<Projects />} />
                 <Route path="/services" element={<Services />} />
                 <Route path="/contact" element={<Contact />} />
-                <Route path="/signup" element={<SignUp />} />
-                <Route path="/signin" element={<SignIn />} />
               </Routes>
             </Suspense>
           </main>
         </div>
       </Router>
-    </AuthProvider>
   );
 }
 

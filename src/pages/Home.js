@@ -8,11 +8,11 @@ const Home = () => {
       <section className="hero">
         <div className="hero-container">
           <div className="hero-content">
-            <h1 className="hero-title">Welcome to Edwin's Portfolio</h1>
-            <p className="hero-subtitle">Full Beginner Backend & Frontend Web Developer </p>
+            <h1 className="hero-title">Edwin Makolo</h1>
+            <p className="hero-subtitle">Software Engineering Student | Full Stack Web Developer</p>
             <p className="hero-description">
-              I create exceptional digital experiences through innovative web development, 
-              combining cutting-edge technology with creative design to bring your vision to life.
+              A motivated Software Engineering Technology student specializing in AI, with a strong foundation in full-stack web development. 
+              I build modern applications using React, Node.js, and MongoDB—focused on clean code, scalable solutions, and continuous learning.
             </p>
             
             <div className="mission-statement">
@@ -61,10 +61,10 @@ const Home = () => {
             </div>
             <div className="stat-card">
               <div className="stat-icon">
-                <i className="fas fa-users"></i>
+                <i className="fas fa-trophy"></i>
               </div>
-              <h3>1+</h3>
-              <p>Years Experience</p>
+              <h3>1st</h3>
+              <p>Place Hackathon Winner</p>
             </div>
             <div className="stat-card">
               <div className="stat-icon">

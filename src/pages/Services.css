@@ -73,7 +73,7 @@
 .service-icon {
   width: 80px;
   height: 80px;
-  background: linear-gradient(135deg, #dc2626, #991b1b);
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -135,7 +135,7 @@
 .price {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #dc2626;
+  color: #2563eb;
 }
 
 .process-section {
@@ -176,7 +176,7 @@
 .step-number {
   width: 60px;
   height: 60px;
-  background: #dc2626;
+  background: #2563eb;
   color: white;
   border-radius: 50%;
   display: flex;
@@ -199,7 +199,7 @@
 .step-icon {
   width: 60px;
   height: 60px;
-  background: linear-gradient(135deg, #dc2626, #991b1b);
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -266,7 +266,7 @@
 .why-icon {
   width: 80px;
   height: 80px;
-  background: linear-gradient(135deg, #dc2626, #991b1b);
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -334,7 +334,7 @@
 
 .btn-primary {
   background: white;
-  color: #dc2626;
+  color: #2563eb;
 }
 
 .btn-primary:hover {
@@ -351,7 +351,7 @@
 
 .btn-secondary:hover {
   background: white;
-  color: #dc2626;
+  color: #2563eb;
   transform: translateY(-2px);
 }
 
@@ -484,7 +484,7 @@
 }
 
 .error-state i {
-  color: #dc2626;
+  color: #2563eb;
 }
 
 .empty-state i {
@@ -500,7 +500,7 @@
 }
 
 .error-state p {
-  color: #dc2626;
+  color: #2563eb;
 }
 
 /* Add Service Section */
@@ -574,7 +574,7 @@
 .add-service-form .form-group input:focus,
 .add-service-form .form-group textarea:focus {
   outline: none;
-  border-color: #dc2626;
+  border-color: #2563eb;
   box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
 }
 
@@ -609,12 +609,12 @@
 }
 
 .add-service-form .form-actions .btn-primary {
-  background: #dc2626;
+  background: #2563eb;
   color: white;
 }
 
 .add-service-form .form-actions .btn-primary:hover {
-  background: #b91c1c;
+  background: #1d4ed8;
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(220, 38, 38, 0.3);
 }
@@ -685,12 +685,12 @@
 }
 
 .service-action-btn.delete-btn {
-  background: #dc2626;
+  background: #2563eb;
   color: white;
 }
 
 .service-action-btn.delete-btn:hover {
-  background: #b91c1c;
+  background: #1d4ed8;
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(220, 38, 38, 0.3);
 }

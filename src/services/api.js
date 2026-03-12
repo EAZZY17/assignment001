@@ -160,7 +160,7 @@ export const contactsAPI = {
   create: (data) => apiRequest('/api/contacts', {
     method: 'POST',
     body: JSON.stringify(data),
-  }, true), // requireAuth = true
+  }, false), // Visitors can submit contact form without auth
   update: (id, data) => apiRequest(`/api/contacts/${id}`, {
     method: 'PUT',
     body: JSON.stringify(data),

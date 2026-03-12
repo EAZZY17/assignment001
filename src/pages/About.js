@@ -58,9 +58,11 @@ const About = () => {
               <div className="bio-section">
                 <h3>About Me</h3>
                 <p>
-                  I am a Centennial College student studying software engineering - Artificial Intelligence. 
-                  I have little experience, just the knowledge I have gained from the first year of my 
-                  program; like Programming, JavaScript, HTML and CSS.
+                  I'm a highly motivated Software Engineering Technology student specializing in Artificial Intelligence at Centennial College. 
+                  I have a strong foundation in full-stack web development, focusing on modern frontend programming with React and backend 
+                  integration with Node.js and MongoDB. I'm passionate about building scalable web solutions and currently advancing my 
+                  knowledge in AI systems design, AI ethics, and algorithms. I've built full-stack applications, won 1st place in a design 
+                  hackathon, and developed an AI-powered paramedic assistant at a WIMTACH hackathon.
                 </p>
               </div>
 
@@ -68,32 +70,34 @@ const About = () => {
                 <h3>Technical Skills</h3>
                 <div className="skills-grid">
                   <div className="skill-category">
-                    <h4>Frontend</h4>
+                    <h4>Programming Languages</h4>
                     <div className="skill-tags">
-                      <span className="skill-tag">React</span>
                       <span className="skill-tag">JavaScript</span>
-                      <span className="skill-tag">TypeScript</span>
-                      <span className="skill-tag">HTML5</span>
-                      <span className="skill-tag">CSS3</span>
+                      <span className="skill-tag">Java</span>
+                      <span className="skill-tag">C#</span>
+                      <span className="skill-tag">SQL</span>
                     </div>
                   </div>
                   <div className="skill-category">
-                    <h4>Backend</h4>
+                    <h4>Web Technologies</h4>
                     <div className="skill-tags">
+                      <span className="skill-tag">React</span>
+                      <span className="skill-tag">React Router</span>
+                      <span className="skill-tag">HTML</span>
+                      <span className="skill-tag">CSS</span>
                       <span className="skill-tag">Node.js</span>
-                      <span className="skill-tag">Python</span>
                       <span className="skill-tag">Express</span>
                       <span className="skill-tag">MongoDB</span>
                     </div>
                   </div>
                   <div className="skill-category">
-                    <h4>Tools & Technologies</h4>
+                    <h4>Tools & Concepts</h4>
                     <div className="skill-tags">
-                      <span className="skill-tag">Git</span>
-                      <span className="skill-tag">Docker</span>
-                      <span className="skill-tag">AWS</span>
-                      <span className="skill-tag">Figma</span>
+                      <span className="skill-tag">GitHub</span>
                       <span className="skill-tag">VS Code</span>
+                      <span className="skill-tag">JWT</span>
+                      <span className="skill-tag">REST APIs</span>
+                      <span className="skill-tag">Component-Based Design</span>
                     </div>
                   </div>
                 </div>
@@ -120,10 +124,10 @@ const About = () => {
               <div className="timeline-item">
                 <div className="timeline-marker"></div>
                 <div className="timeline-content">
-                  <h4>Software Engineering Technology - Artificial Intelligence</h4>
-                  <p className="timeline-company">Centennial College</p>
-                  <p className="timeline-date">2024 - Present</p>
-                  <p>Currently pursuing a degree in Software Engineering Technology - Artificial Intelligence at Centennial College.</p>
+                  <h4>Software Engineering Technology (Co-op) - Artificial Intelligence</h4>
+                  <p className="timeline-company">Centennial College, Toronto</p>
+                  <p className="timeline-date">Sept 2024 - Present</p>
+                  <p>Advanced Diploma with key courses in Web Application Development, Java Programming, Web Interface Design, C# Programming, AI System Design, and Software Requirements Engineering.</p>
                 </div>
               </div>
             </div>
@@ -133,28 +137,19 @@ const About = () => {
               <div className="timeline-item">
                 <div className="timeline-marker"></div>
                 <div className="timeline-content">
-                  <h4>Backend Developer</h4>
-                  <p className="timeline-company">College Student</p>
-                  <p className="timeline-date">2024 - Present</p>
-                  <p>Lead development of web applications using React and Node.js, managing a team of 3 developers.</p>
+                  <h4>Poll Worker - Deputy Return Office</h4>
+                  <p className="timeline-company">Elections Canada, Toronto</p>
+                  <p className="timeline-date">April 2025</p>
+                  <p>Oversaw voting process to ensure fair, accurate and efficient election. Distributed ballots, helped voters with questions, maintained order, and performed balance counts for accuracy.</p>
                 </div>
               </div>
               <div className="timeline-item">
                 <div className="timeline-marker"></div>
                 <div className="timeline-content">
-                  <h4>Frontend Developer</h4>
-                  <p className="timeline-company">College Student</p>
-                  <p className="timeline-date">2024 - Present</p>
-                  <p>Developed and maintained web applications, working with various JavaScript frameworks.</p>
-                </div>
-              </div>
-              <div className="timeline-item">
-                <div className="timeline-marker"></div>
-                <div className="timeline-content">
-                  <h4>Web Designer</h4>
-                  <p className="timeline-company">College Student</p>
-                  <p className="timeline-date">2020 - 2021</p>
-                  <p>Started my professional journey building responsive websites and learning modern development practices.</p>
+                  <h4>Buffet Attendant</h4>
+                  <p className="timeline-company">Pinnacle Caterers, Toronto</p>
+                  <p className="timeline-date">March - Oct 2023</p>
+                  <p>Assisted with kitchen operations at a high-volume restaurant. Processed orders, monitored food preparation and presentation, and maintained health, safety, and sanitation policies.</p>
                 </div>
               </div>
             </div>
