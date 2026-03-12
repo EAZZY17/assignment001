@@ -299,7 +299,7 @@ const Projects = () => {
                       </div>
                     )}
 
-                    {(project.github || project.demo) && (
+                    {((project.github && project.github !== '#') || (project.demo && project.demo !== '#')) && (
                       <div className="project-links-section">
                         {project.github && project.github !== '#' && (
                           <a href={project.github} target="_blank" rel="noopener noreferrer" className="project-link-btn">
@@ -307,7 +307,7 @@ const Projects = () => {
                             View on GitHub
                           </a>
                         )}
-                        {project.demo && (
+                        {project.demo && project.demo !== '#' && (
                           <a href={project.demo} target="_blank" rel="noopener noreferrer" className="project-link-btn">
                             <i className="fas fa-external-link-alt"></i>
                             View Demo

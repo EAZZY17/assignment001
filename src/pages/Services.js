@@ -3,52 +3,64 @@ import './Services.css';
 
 const Services = () => {
 
-  // Default services
+  // Default services - based on skills and hackathon experience from resume
   const defaultServices = [
     {
       id: 1,
-      title: 'Web Development',
-      description: 'Custom website development using modern technologies like React, Node.js and JavaScript. From simple landing pages to complex web applications.',
+      title: 'Full Stack Web Development',
+      description: 'End-to-end web application development using React, Node.js, Express, and MongoDB. From responsive frontends to RESTful backends with authentication and database design.',
       icon: 'fas fa-code',
       features: [
-        'Responsive Design',
-        'Custom Web Applications',
-        'E-commerce Solutions',
-        'CMS Integration',
-        'API Development',
-        'Performance Optimization'
-      ],
-      pricing: 'Starting at $100'
+        'React & Component-Based Architecture',
+        'Node.js & Express Backends',
+        'MongoDB & Database Design',
+        'RESTful API Development',
+        'JWT Authentication',
+        'Responsive & Mobile-First Design'
+      ]
     },
     {
       id: 2,
-      title: 'Full Stack Development',
-      description: 'Complete end-to-end development solutions including frontend, backend, database design, and deployment.',
-      icon: 'fas fa-server',
+      title: 'AI & Conversational Integration',
+      description: 'Integration of AI and natural language capabilities into applications. Experience building multi-agent pipelines, voice-to-text interfaces, and intelligent form automation from the ParaHelper hackathon project.',
+      icon: 'fas fa-robot',
       features: [
-        'Frontend Development',
-        'Backend Development',
-        'Database Design',
-        'Cloud Deployment',
-        'DevOps Setup',
-        'Technical Consulting'
-      ],
-      pricing: 'Starting at $300'
+        'LLM Integration (OpenRouter, Claude)',
+        'Multi-Agent Pipeline Design',
+        'Voice-to-Text Interfaces',
+        'Vector Search & RAG (ChromaDB)',
+        'Intent Detection & Data Extraction',
+        'Context-Aware Conversational AI'
+      ]
     },
-    
     {
       id: 3,
-      title: 'Technical Consulting',
-      description: 'Technical advice and guidance for technology decisions in web development strategy.',
-      icon: 'fas fa-lightbulb',
+      title: 'IoT & System Design',
+      description: 'Conceptual design and architecture for smart systems. Experience from the Vending Kitchen System hackathon—covering subsystem integration, scan-to-cook workflows, and IoT dashboard design.',
+      icon: 'fas fa-microchip',
       features: [
-        'Technology Assessment',
-        'Code Reviews',
-        'Performance Audits',
-        'Security Analysis',
-      ],
-      pricing: '$50/hour'
-    }
+        'System Architecture Design',
+        'Hardware-Software Integration',
+        'IoT Dashboard UI/UX',
+        'Workflow Design & Prototyping',
+        'Subsystem Integration',
+        'Cross-Platform Solutions'
+      ]
+    },
+    {
+      id: 4,
+      title: 'REST API & Backend Development',
+      description: 'Design and development of RESTful APIs with proper authentication, validation, and testing. Built ticketing systems with role-based access control using Node.js, Express, and MongoDB.',
+      icon: 'fas fa-plug',
+      features: [
+        'RESTful API Design',
+        'JWT & Role-Based Access Control',
+        'Postman API Documentation',
+        'Automated Testing (Jest)',
+        'MongoDB & Data Modeling',
+        'Agile Development Practices'
+      ]
+    },
   ];
 
   const services = defaultServices;
@@ -121,10 +133,6 @@ const Services = () => {
                         </li>
                       ))}
                     </ul>
-                  </div>
-                  
-                  <div className="service-pricing">
-                    <span className="price">{service.pricing}</span>
                   </div>
 
                 </div>
