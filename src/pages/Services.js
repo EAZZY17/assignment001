@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import './Services.css';
 
@@ -66,33 +66,6 @@ const Services = () => {
 
   const services = defaultServices;
 
-  const processSteps = [
-    {
-      step: 1,
-      title: 'Discovery & Planning',
-      description: 'We start by understanding your requirements, goals, and target audience to create a comprehensive project plan.',
-      icon: 'fas fa-search'
-    },
-    {
-      step: 2,
-      title: 'Design & Prototyping',
-      description: 'Creating wireframes, mockups, and interactive prototypes to visualize the final product before development.',
-      icon: 'fas fa-pencil-ruler'
-    },
-    {
-      step: 3,
-      title: 'Development & Testing',
-      description: 'Building the solution with clean, maintainable code while continuously testing for quality and performance.',
-      icon: 'fas fa-code'
-    },
-    {
-      step: 4,
-      title: 'Deployment & Launch',
-      description: 'Deploying the solution to production and providing ongoing support and maintenance as needed.',
-      icon: 'fas fa-rocket'
-    }
-  ];
-
   return (
     <div className="services-page">
       <section className="services-hero">
@@ -141,31 +114,6 @@ const Services = () => {
             ))}
           </div>
 
-        </div>
-      </section>
-
-      <section className="process-section">
-        <div className="container">
-          <div className="process-header">
-            <h2>My Process</h2>
-            <p>How I bring your ideas to life with a structured, collaborative approach</p>
-          </div>
-
-          <div className="process-timeline">
-            {processSteps.map((step, index) => (
-              <div key={step.step} className="process-step">
-                <div className="step-number">{step.step}</div>
-                <div className="step-content">
-                  <div className="step-icon">
-                    <i className={step.icon}></i>
-                  </div>
-                  <h3>{step.title}</h3>
-                  <p>{step.description}</p>
-                </div>
-                {index < processSteps.length - 1 && <div className="step-connector"></div>}
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 

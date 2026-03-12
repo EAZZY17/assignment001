@@ -81,19 +81,6 @@ const Projects = () => {
       demo: '#',
       category: 'other',
       image: null
-    },
-    {
-      _id: '6',
-      title: 'Agile Ticketing & Workflow System',
-      description: 'Full-stack ticketing system with user authentication, role-based access control, and ticket management. Designed backend framework with structured Postman collections for RESTful API endpoints. Implemented Jest for automated testing of routes, validation, and authorization logic. Used Jira for sprint planning, backlog management, and iterative delivery.',
-      completion: new Date('2024-01-01'),
-      technologies: ['Node.js', 'Express', 'MongoDB', 'REST APIs', 'Postman', 'JWT', 'Jest', 'Jira'],
-      role: 'Full Stack Developer',
-      outcome: 'Demonstrated backend architecture, API design, automated testing, and agile methodology.',
-      github: '#',
-      demo: '#',
-      category: 'web',
-      image: null
     }
   ];
 
@@ -115,7 +102,7 @@ const Projects = () => {
         let allProjects = [...fallbackProjects];
         
         // Projects to exclude (like "Portfolio Website")
-        const excludedTitles = ['Portfolio Website', 'portfolio website', 'Portfolio website'];
+        const excludedTitles = ['Portfolio Website', 'portfolio website', 'Portfolio website', 'Agile Ticketing & Workflow System'];
         
         // If backend has data, add any additional projects that aren't in fallback
         // Filter out empty or incomplete projects and excluded titles
