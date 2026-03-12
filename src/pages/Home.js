@@ -9,7 +9,7 @@ const Home = () => {
         <div className="hero-container">
           <div className="hero-content">
             <h1 className="hero-title">Edwin Makolo</h1>
-            <p className="hero-subtitle">Software Engineering Student | Full Stack Web Developer</p>
+            <p className="hero-subtitle">Software Engineering Student | AI & Web Development</p>
             <p className="hero-description">
               A motivated Software Engineering Technology student specializing in AI, with a strong foundation in full-stack web development. 
               I build modern applications using React, Node.js, and MongoDB—focused on clean code, scalable solutions, and continuous learning.
