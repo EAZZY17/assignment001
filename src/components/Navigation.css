@@ -45,38 +45,58 @@
 
 .nav-link {
   text-decoration: none;
-  color: var(--color-text-dark);
-  font-weight: 500;
-  font-size: 0.95rem;
-  padding: 0.5rem 1rem;
-  border-radius: 10px;
-  transition: all var(--transition-smooth);
+  color: var(--color-text-body);
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: var(--radius-sm);
+  transition: color var(--transition-smooth);
   position: relative;
 }
 
 .nav-link:hover {
-  color: var(--color-accent);
-  background: var(--color-accent-muted);
+  color: var(--color-text-dark);
 }
 
 .nav-link.active {
   color: var(--color-accent);
-  background: var(--color-accent-muted);
 }
 
+/* Clean underline indicator for the active route */
 .nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0.9rem;
+  right: 0.9rem;
+  bottom: 0.15rem;
+  height: 2px;
+  background: var(--color-accent);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--transition-smooth);
+}
+
+.nav-link.active::after {
+  transform: scaleX(1);
+}
+
+/* Resume link - solid accent button for a clear call to action */
+.nav-menu .nav-link[download] {
+  margin-left: 0.75rem;
+  color: white;
+  background: var(--color-accent);
+  border-radius: var(--btn-radius);
+  padding: 0.55rem 1.1rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.nav-menu .nav-link[download]::after {
   display: none;
 }
 
-/* Resume link - subtle pill style */
-.nav-menu .nav-link[download] {
-  margin-left: 0.5rem;
-  color: var(--color-accent);
-  border: 1.5px solid var(--color-accent);
-}
-
 .nav-menu .nav-link[download]:hover {
-  background: var(--color-accent);
+  background: var(--color-accent-hover);
   color: white;
 }
 

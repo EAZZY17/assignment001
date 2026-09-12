@@ -31,6 +31,7 @@ const Contact = () => {
     <div className="contact-page">
       <section className="contact-hero">
         <div className="container">
+          <span className="eyebrow eyebrow-center on-dark">Contact</span>
           <h1>Get In Touch</h1>
           <p>Open to co-op opportunities and connecting with recruiters</p>
         </div>

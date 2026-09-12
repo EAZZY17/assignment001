@@ -175,6 +175,7 @@ const Projects = () => {
     <div className="projects-page">
       <section className="projects-hero">
         <div className="container">
+          <span className="eyebrow eyebrow-center on-dark">Portfolio</span>
           <h1>My Projects</h1>
           <p>Showcasing previously completed work and technical expertise</p>
         </div>

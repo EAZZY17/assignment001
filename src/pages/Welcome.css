@@ -24,9 +24,25 @@
   position: absolute;
   inset: 0;
   background-image: 
-    linear-gradient(rgba(14, 165, 233, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(14, 165, 233, 0.03) 1px, transparent 1px);
-  background-size: 60px 60px;
+    linear-gradient(rgba(99, 130, 246, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 130, 246, 0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, #000 40%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, #000 40%, transparent 100%);
+}
+
+/* Soft accent glow behind the hero for depth */
+.welcome-backdrop::after {
+  content: '';
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  width: 620px;
+  height: 620px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.18), transparent 62%);
+  filter: blur(20px);
+  pointer-events: none;
 }
 
 .welcome-content {
@@ -58,19 +74,19 @@
 }
 
 .welcome-title {
-  font-size: clamp(2.5rem, 8vw, 4.5rem);
-  font-weight: 700;
+  font-size: clamp(2.5rem, 8vw, 4.75rem);
+  font-weight: 800;
   color: white;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
   margin-bottom: 0.25rem;
 }
 
 .welcome-subtitle {
-  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-size: clamp(2rem, 6vw, 3.25rem);
   font-weight: 300;
   color: var(--color-text-muted);
-  letter-spacing: 0.15em;
+  letter-spacing: 0.02em;
   margin-bottom: 1.5rem;
 }
 
@@ -85,21 +101,21 @@
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 1rem 2.5rem;
-  background: var(--color-accent);
+  padding: 1rem 2.25rem;
+  background: var(--accent-gradient);
   color: white;
-  font-size: 1.125rem;
-  font-weight: 600;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
   text-decoration: none;
-  border-radius: 50px;
+  border-radius: var(--btn-radius);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 20px rgba(14, 165, 233, 0.35);
+  box-shadow: var(--shadow-accent);
 }
 
 .welcome-cta:hover {
-  background: var(--color-accent-hover);
   transform: translateY(-3px);
-  box-shadow: 0 8px 30px rgba(14, 165, 233, 0.45);
+  box-shadow: 0 14px 34px rgba(37, 99, 235, 0.42);
 }
 
 .welcome-cta i {
