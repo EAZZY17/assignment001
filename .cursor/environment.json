@@ -1,0 +1,16 @@
+{
+  "name": "Edwin Portfolio Website",
+  "install": "npm ci",
+  "terminals": [
+    {
+      "name": "dev-server",
+      "command": "BROWSER=none npm start"
+    }
+  ],
+  "ports": [
+    {
+      "name": "CRA dev server",
+      "port": 3001
+    }
+  ]
+}
