@@ -1,20 +1,52 @@
-/* Reset and Base Styles */
+/* ==========================================================================
+   Global design system — professional, modern, high-contrast
+   ========================================================================== */
 :root {
-  /* Professional color palette - refined tech/executive feel */
-  --color-bg-dark: #0c1222;
-  --color-bg-darker: #080d18;
-  --color-bg-card: #111827;
-  --color-bg-elevated: #1f2937;
-  --color-accent: #0ea5e9;
-  --color-accent-hover: #0284c7;
-  --color-accent-muted: rgba(14, 165, 233, 0.15);
+  /* Surfaces — deep "ink" navy for an executive, high-end feel */
+  --color-bg-dark: #0a1020;
+  --color-bg-darker: #060a14;
+  --color-bg-card: #0f1728;
+  --color-bg-elevated: #172137;
+
+  /* Light surfaces */
+  --color-surface: #ffffff;
+  --color-surface-alt: #f5f7fa;
+  --color-surface-muted: #eef1f6;
+
+  /* Accent — confident corporate blue → indigo */
+  --color-accent: #2563eb;
+  --color-accent-hover: #1d4ed8;
+  --color-accent-strong: #1e40af;
+  --color-accent-muted: rgba(37, 99, 235, 0.1);
+  --accent-gradient: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
+
+  /* Text */
   --color-text: #f8fafc;
-  --color-text-muted: #94a3b8;
-  --color-text-dark: #1f2937;
-  --color-border: rgba(148, 163, 184, 0.2);
-  --color-shadow: rgba(0, 0, 0, 0.15);
-  --color-shadow-accent: rgba(14, 165, 233, 0.25);
-  --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --color-text-muted: #9aa8bd;
+  --color-text-dark: #0f172a;
+  --color-text-body: #475569;
+  --color-text-soft: #64748b;
+
+  /* Lines & shadows */
+  --color-border: #e4e8ef;
+  --color-border-strong: #d3dae4;
+  --color-border-dark: rgba(148, 163, 184, 0.16);
+  --color-shadow: rgba(15, 23, 42, 0.08);
+  --color-shadow-accent: rgba(37, 99, 235, 0.28);
+
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow: 0 6px 24px rgba(15, 23, 42, 0.07);
+  --shadow-lg: 0 20px 48px rgba(15, 23, 42, 0.12);
+  --shadow-accent: 0 10px 28px rgba(37, 99, 235, 0.3);
+
+  /* Radius — sharper corners read more professional than bubbly pills */
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+  --btn-radius: 8px;
+
+  --transition-smooth: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * {
@@ -27,72 +59,85 @@ body {
   font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   line-height: 1.6;
   color: var(--color-text-dark);
+  background: var(--color-surface);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
-/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Loading animation */
+/* ---- Animations ---- */
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .fade-in-up {
   animation: fadeInUp 0.6s ease-out;
 }
 
-/* Button ripple effect */
 @keyframes ripple {
-  to {
-    transform: scale(4);
-    opacity: 0;
-  }
+  to { transform: scale(4); opacity: 0; }
 }
 
-/* Global button styles */
+/* ---- Layout utilities ---- */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+/* ---- Eyebrow: small uppercase section label for a polished, editorial feel ---- */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 1rem;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 28px;
+  height: 2px;
+  background: var(--color-accent);
+  border-radius: 2px;
+}
+
+.eyebrow.eyebrow-center {
+  justify-content: center;
+}
+
+.eyebrow.on-dark {
+  color: #93b4ff;
+}
+
+.eyebrow.on-dark::before {
+  background: #93b4ff;
+}
+
+/* ---- Global button base ---- */
 .btn {
   position: relative;
   overflow: hidden;
 }
 
-/* Utility classes */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.text-left {
-  text-align: left;
-}
-
-.text-right {
-  text-align: right;
-}
-
-/* Responsive utilities */
+/* ---- Responsive ---- */
 @media (max-width: 768px) {
-  .container {
-    padding: 0 15px;
-  }
+  .container { padding: 0 18px; }
 }
 
 @media (max-width: 480px) {
-  .container {
-    padding: 0 10px;
-  }
+  .container { padding: 0 14px; }
 }

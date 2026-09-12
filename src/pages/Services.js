@@ -70,8 +70,9 @@ const Services = () => {
     <div className="services-page">
       <section className="services-hero">
         <div className="container">
-          <h1>My Services</h1>
-          <p>knowledge to help anyone in need of help in web development and technology. Whether it's learning how to create personal website or building complex applications, I'm here to assist.</p>
+          <span className="eyebrow eyebrow-center on-dark">Services</span>
+          <h1>What I can build for you</h1>
+          <p>From learning how to create a personal website to building complex, production-ready applications, I'm here to help across web, AI, and systems.</p>
         </div>
       </section>
 
