@@ -56,11 +56,20 @@ const Navigation = () => {
             <a
               href="/EDWIN_MAKOLO_RESUME.pdf"
               download
-              className={`nav-link`}
+              className="nav-link"
               onClick={closeMenu}
             >
               Resume
             </a>
+          </li>
+          <li className="nav-item">
+            <Link
+              to="/contact"
+              className="nav-link nav-cta"
+              onClick={closeMenu}
+            >
+              Hire Me
+            </Link>
           </li>
         </ul>
 

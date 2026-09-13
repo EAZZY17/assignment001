@@ -9,69 +9,50 @@ const Home = () => {
         <div className="hero-container">
           <div className="hero-content">
             <span className="eyebrow on-dark">Software Engineer · AI &amp; Web</span>
-            <h1 className="hero-title">Edwin Makolo</h1>
-            <p className="hero-subtitle">Building reliable, scalable software from front end to back end</p>
+            <h1 className="hero-title">
+              Hi, I&apos;m <span className="hero-name">Edwin</span>
+            </h1>
+            <p className="hero-subtitle">I build reliable, scalable software from front end to back end.</p>
             <p className="hero-description">
-              A motivated Software Engineering Technology student specializing in AI, with a strong foundation in full-stack web development. 
-              I build modern applications using React, Node.js, and MongoDB—focused on clean code, scalable solutions, and continuous learning.
+              Software Engineering Technology student specializing in AI. I ship full-stack apps
+              with React, Node.js, and MongoDB — focused on clean code, scalable systems, and
+              continuous learning.
             </p>
-            
-            <div className="mission-statement">
-              <h2>Mission Statement</h2>
-              <p>
-                "To deliver high-quality, scalable web solutions that not only meet client 
-                requirements but exceed expectations, while continuously learning and adapting 
-                to emerging technologies in the ever-evolving digital landscape."
-              </p>
-            </div>
 
             <div className="hero-buttons">
-              <Link to="/about" className="btn btn-primary">
-                <i className="fas fa-user"></i>
-                Learn About Me
+              <Link to="/projects" className="btn btn-primary">
+                View My Work
+                <i className="fas fa-arrow-right"></i>
               </Link>
-              <Link to="/projects" className="btn btn-secondary">
-                <i className="fas fa-code"></i>
-                View My Projects
-              </Link>
+              <a href="/EDWIN_MAKOLO_RESUME.pdf" className="btn btn-secondary" download>
+                <i className="fas fa-download"></i>
+                Download Resume
+              </a>
             </div>
           </div>
-          
+
           <div className="hero-image">
-            <div className="hero-card">
-              <div className="hero-card-top">
-                <div className="hero-monogram">EM</div>
-                <div>
-                  <p className="hero-card-name">Edwin Makolo</p>
-                  <p className="hero-card-role">Software Engineer</p>
-                </div>
-                <span className="hero-card-status">
-                  <span className="status-dot"></span>
-                  Available
-                </span>
+            <div className="code-snippet-card" aria-hidden="true">
+              <div className="code-snippet-chrome">
+                <span className="code-dot"></span>
+                <span className="code-dot"></span>
+                <span className="code-dot"></span>
+                <span className="code-filename">edwin.js</span>
               </div>
-              <div className="hero-card-divider"></div>
-              <ul className="hero-card-facts">
-                <li>
-                  <i className="fas fa-location-dot"></i>
-                  <span>Toronto, Canada</span>
-                </li>
-                <li>
-                  <i className="fas fa-graduation-cap"></i>
-                  <span>Software Engineering &amp; AI — Centennial College</span>
-                </li>
-                <li>
-                  <i className="fas fa-trophy"></i>
-                  <span>1st Place — Design Hackathon</span>
-                </li>
-              </ul>
-              <div className="hero-card-tags">
-                <span>React</span>
-                <span>Node.js</span>
-                <span>Express</span>
-                <span>MongoDB</span>
-                <span>AI / LLMs</span>
-              </div>
+              <pre className="code-snippet">
+                <code>
+                  <span className="code-kw">const</span> <span className="code-id">engineer</span> <span className="code-op">=</span> {'{'}{'\n'}
+                  {'  '}<span className="code-key">name</span>: <span className="code-str">&apos;Edwin Makolo&apos;</span>,{'\n'}
+                  {'  '}<span className="code-key">role</span>: <span className="code-str">&apos;Software Engineer&apos;</span>,{'\n'}
+                  {'  '}<span className="code-key">location</span>: <span className="code-str">&apos;Toronto&apos;</span>,{'\n'}
+                  {'  '}<span className="code-key">skills</span>: [{'\n'}
+                  {'    '}<span className="code-str">&apos;React&apos;</span>, <span className="code-str">&apos;Node.js&apos;</span>, <span className="code-str">&apos;MongoDB&apos;</span>,{'\n'}
+                  {'    '}<span className="code-str">&apos;Express&apos;</span>, <span className="code-str">&apos;AI / LLMs&apos;</span>{'\n'}
+                  {'  '}],{'\n'}
+                  {'  '}<span className="code-key">available</span>: <span className="code-bool">true</span>{'\n'}
+                  {'}'};{'\n'}
+                </code>
+              </pre>
             </div>
           </div>
         </div>
@@ -82,6 +63,13 @@ const Home = () => {
           <div className="stats-grid">
             <div className="stat-card">
               <div className="stat-icon">
+                <i className="fas fa-code"></i>
+              </div>
+              <h3>2+</h3>
+              <p>Years Coding</p>
+            </div>
+            <div className="stat-card">
+              <div className="stat-icon">
                 <i className="fas fa-project-diagram"></i>
               </div>
               <h3>5+</h3>
@@ -89,17 +77,10 @@ const Home = () => {
             </div>
             <div className="stat-card">
               <div className="stat-icon">
-                <i className="fas fa-trophy"></i>
+                <i className="fas fa-layer-group"></i>
               </div>
-              <h3>1st</h3>
-              <p>Place Hackathon Winner</p>
-            </div>
-            <div className="stat-card">
-              <div className="stat-icon">
-                <i className="fas fa-award"></i>
-              </div>
-              <h3>100%</h3>
-              <p>Client Satisfaction</p>
+              <h3>10+</h3>
+              <p>Technologies Used</p>
             </div>
           </div>
         </div>
@@ -108,12 +89,12 @@ const Home = () => {
       <section className="cta-section">
         <div className="container">
           <div className="cta-content">
-            <span className="eyebrow eyebrow-center on-dark">Let's connect</span>
-            <h2>Ready to Start Your Next Project?</h2>
-            <p>Let's work together to create something amazing</p>
+            <span className="eyebrow eyebrow-center on-dark">Let&apos;s connect</span>
+            <h2>Ready to start your next project?</h2>
+            <p>Open to co-op roles, freelance work, and building with a team.</p>
             <Link to="/contact" className="btn btn-primary btn-large">
-              <i className="fas fa-envelope"></i>
               Get In Touch
+              <i className="fas fa-arrow-right"></i>
             </Link>
           </div>
         </div>

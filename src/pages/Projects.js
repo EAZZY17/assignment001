@@ -293,15 +293,18 @@ const Projects = () => {
                         {project.github && project.github !== '#' && (
                           <a href={project.github} target="_blank" rel="noopener noreferrer" className="project-link-btn">
                             <i className="fab fa-github"></i>
-                            View on GitHub
+                            GitHub
                           </a>
                         )}
-                        {project.demo && project.demo !== '#' && (
-                          <a href={project.demo} target="_blank" rel="noopener noreferrer" className="project-link-btn">
-                            <i className="fas fa-external-link-alt"></i>
-                            View Demo
-                          </a>
-                        )}
+                        <a
+                          href={(project.demo && project.demo !== '#') ? project.demo : project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="view-project-link"
+                        >
+                          View Project
+                          <i className="fas fa-arrow-right"></i>
+                        </a>
                       </div>
                     )}
 

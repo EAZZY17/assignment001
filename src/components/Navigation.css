@@ -2,17 +2,17 @@
   position: fixed;
   top: 0;
   width: 100%;
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(10, 10, 10, 0.88);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   z-index: 1000;
   transition: all var(--transition-smooth);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid var(--color-border-dark);
 }
 
 .navigation.scrolled {
-  background: rgba(255, 255, 255, 0.97);
-  box-shadow: 0 1px 20px rgba(0, 0, 0, 0.06);
+  background: rgba(5, 5, 5, 0.96);
+  box-shadow: 0 1px 20px rgba(0, 0, 0, 0.4);
 }
 
 .nav-container {
@@ -41,6 +41,7 @@
   gap: 0.25rem;
   margin: 0;
   padding: 0;
+  align-items: center;
 }
 
 .nav-link {
@@ -55,7 +56,7 @@
 }
 
 .nav-link:hover {
-  color: var(--color-text-dark);
+  color: var(--color-text);
 }
 
 .nav-link.active {
@@ -81,23 +82,33 @@
   transform: scaleX(1);
 }
 
-/* Resume link - solid accent button for a clear call to action */
-.nav-menu .nav-link[download] {
+/* Hire Me / CTA — amber fill, dark text for contrast */
+.nav-menu .nav-cta {
   margin-left: 0.75rem;
-  color: white;
+  color: var(--color-text-dark);
   background: var(--color-accent);
   border-radius: var(--btn-radius);
   padding: 0.55rem 1.1rem;
   box-shadow: var(--shadow-sm);
+  font-weight: 700;
 }
 
-.nav-menu .nav-link[download]::after {
+.nav-menu .nav-cta::after {
   display: none;
 }
 
-.nav-menu .nav-link[download]:hover {
+.nav-menu .nav-cta:hover,
+.nav-menu .nav-cta.active {
   background: var(--color-accent-hover);
-  color: white;
+  color: var(--color-text-dark);
+}
+
+.nav-menu .nav-link[download] {
+  color: var(--color-text-body);
+}
+
+.nav-menu .nav-link[download]:hover {
+  color: var(--color-text);
 }
 
 .hamburger {
@@ -110,13 +121,13 @@
 }
 
 .hamburger:hover {
-  background: rgba(0, 0, 0, 0.04);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .bar {
   width: 22px;
   height: 2.5px;
-  background-color: var(--color-text-dark);
+  background-color: var(--color-text);
   margin: 3px 0;
   transition: 0.3s;
   border-radius: 2px;
@@ -145,11 +156,12 @@
     left: -100%;
     top: 72px;
     flex-direction: column;
-    background: white;
+    background: var(--color-bg-darker);
+    border-bottom: 1px solid var(--color-border);
     width: 100%;
     text-align: center;
     transition: 0.35s ease;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
     padding: 1.5rem 0;
     gap: 0.25rem;
   }
@@ -163,7 +175,7 @@
     font-size: 1.05rem;
   }
 
-  .nav-menu .nav-link[download] {
+  .nav-menu .nav-cta {
     margin: 0.5rem 1.25rem 0;
   }
 }
