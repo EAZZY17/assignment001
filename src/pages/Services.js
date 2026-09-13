@@ -70,17 +70,17 @@ const Services = () => {
     <div className="services-page">
       <section className="services-hero">
         <div className="container">
-          <span className="eyebrow eyebrow-center on-dark">Services</span>
-          <h1>What I can build for you</h1>
-          <p>From learning how to create a personal website to building complex, production-ready applications, I'm here to help across web, AI, and systems.</p>
+          <span className="eyebrow eyebrow-center on-dark">Focus Areas</span>
+          <h1>What I work with</h1>
+          <p>The areas I've built the most hands-on experience in through coursework, hackathons, and personal projects.</p>
         </div>
       </section>
 
       <section className="services-overview">
         <div className="container">
           <div className="services-header">
-            <h2>What I Offer</h2>
-            <p>From concept to deployment, I provide end-to-end digital solutions that drive results and exceed expectations.</p>
+            <h2>Where I've Built Experience</h2>
+            <p>A breakdown of the skills and technologies I've applied across academic projects and hackathons.</p>
           </div>
 
           <div className="services-grid">

@@ -19,6 +19,16 @@ const Home = () => {
               continuous learning.
             </p>
 
+            <div className="mission-statement">
+              <h2>What Drives Me</h2>
+              <p>
+                "I like understanding how things work end to end — from the interface someone 
+                actually touches, down to the backend logic and data that make it function. 
+                I'm still early in my career, and I'm using every project and hackathon as a 
+                chance to get better at building things that hold up in the real world."
+              </p>
+            </div>
+
             <div className="hero-buttons">
               <Link to="/projects" className="btn btn-primary">
                 View My Work
@@ -77,10 +87,10 @@ const Home = () => {
             </div>
             <div className="stat-card">
               <div className="stat-icon">
-                <i className="fas fa-layer-group"></i>
+                <i className="fas fa-graduation-cap"></i>
               </div>
-              <h3>10+</h3>
-              <p>Technologies Used</p>
+              <h3>3rd Year</h3>
+              <p>Co-op Student</p>
             </div>
           </div>
         </div>

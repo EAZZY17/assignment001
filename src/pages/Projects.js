@@ -18,6 +18,19 @@ const Projects = () => {
   // Moved outside component to avoid dependency warning
   const fallbackProjects = [
     {
+      _id: '6',
+      title: 'Agile Ticketing & Workflow System',
+      description: 'Full-stack ticketing and workflow platform built with Node.js, Express, and MongoDB. Includes user authentication, role-based access control, and ticket management. Backend endpoints were designed and validated using structured Postman collections, with Jest covering routes, validation, and authorization logic. Sprints and backlog were managed in Jira following an Agile process.',
+      completion: new Date('2025-01-01'),
+      technologies: ['Node.js', 'Express', 'MongoDB', 'REST APIs', 'Postman', 'JWT', 'Jest', 'Jira'],
+      role: 'Full Stack Developer',
+      outcome: 'Built a complete backend framework demonstrating authentication, authorization, automated testing, and Agile delivery practices.',
+      github: '#',
+      demo: '#',
+      category: 'web',
+      image: null
+    },
+    {
       _id: '1',
       title: 'Pixar Movie Gallery',
       description: 'An interactive movie gallery showcasing Pixar films with filtering and search capabilities. The gallery automatically loads movie data from a JSON file when the page loads, displaying all Pixar movies with their posters, titles, directors, and release years. Users can filter movies by year using a dropdown menu, filter by director, sort movies by release date in ascending or descending order, and search for specific movies by title. All filters and search work together dynamically - when you search, the filters reset, and when you use filters, the search resets. The gallery uses DOM manipulation to dynamically update the displayed movies based on user interactions.',
@@ -102,7 +115,7 @@ const Projects = () => {
         let allProjects = [...fallbackProjects];
         
         // Projects to exclude (like "Portfolio Website")
-        const excludedTitles = ['Portfolio Website', 'portfolio website', 'Portfolio website', 'Agile Ticketing & Workflow System'];
+        const excludedTitles = ['Portfolio Website', 'portfolio website', 'Portfolio website'];
         
         // If backend has data, add any additional projects that aren't in fallback
         // Filter out empty or incomplete projects and excluded titles
@@ -233,7 +246,7 @@ const Projects = () => {
                     <i className="fas fa-code"></i>
                     <p>Project Screenshot</p>
                   </div>
-                    {project.demo && (
+                    {project.demo && project.demo !== '#' && (
                   <div className="project-overlay">
                       <a href={project.demo} target="_blank" rel="noopener noreferrer" className="project-link">
                         <i className="fas fa-external-link-alt"></i>
@@ -293,18 +306,13 @@ const Projects = () => {
                         {project.github && project.github !== '#' && (
                           <a href={project.github} target="_blank" rel="noopener noreferrer" className="project-link-btn">
                             <i className="fab fa-github"></i>
-                            GitHub
                           </a>
                         )}
-                        <a
-                          href={(project.demo && project.demo !== '#') ? project.demo : project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="view-project-link"
-                        >
-                          View Project
-                          <i className="fas fa-arrow-right"></i>
-                        </a>
+                        {project.demo && project.demo !== '#' && (
+                          <a href={project.demo} target="_blank" rel="noopener noreferrer" className="view-project-link">
+                            View Demo
+                          </a>
+                        )}
                       </div>
                     )}
 
