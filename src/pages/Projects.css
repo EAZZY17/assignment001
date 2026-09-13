@@ -258,7 +258,7 @@
 
 .project-role,
 .project-outcome {
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.85rem;
 }
 
 .project-role h4,
@@ -277,6 +277,11 @@
   color: var(--color-text-body);
   font-size: 0.875rem;
   line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .project-technologies h4 {

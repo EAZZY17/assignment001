@@ -12,7 +12,7 @@ const Home = () => {
             <h1 className="hero-title">
               Hi, I&apos;m <span className="hero-name">Edwin</span>
             </h1>
-            <p className="hero-subtitle">I build reliable, scalable software from front end to back end.</p>
+            <p className="hero-subtitle">I build reliable, scalable software — front end to back end.</p>
             <p className="hero-description">
               Software Engineering Technology student specializing in AI. I ship full-stack apps
               with React, Node.js, and MongoDB — focused on clean code, scalable systems, and
@@ -41,16 +41,16 @@ const Home = () => {
               </div>
               <pre className="code-snippet">
                 <code>
-                  <span className="code-kw">const</span> <span className="code-id">engineer</span> <span className="code-op">=</span> {'{'}{'\n'}
-                  {'  '}<span className="code-key">name</span>: <span className="code-str">&apos;Edwin Makolo&apos;</span>,{'\n'}
-                  {'  '}<span className="code-key">role</span>: <span className="code-str">&apos;Software Engineer&apos;</span>,{'\n'}
-                  {'  '}<span className="code-key">location</span>: <span className="code-str">&apos;Toronto&apos;</span>,{'\n'}
-                  {'  '}<span className="code-key">skills</span>: [{'\n'}
-                  {'    '}<span className="code-str">&apos;React&apos;</span>, <span className="code-str">&apos;Node.js&apos;</span>, <span className="code-str">&apos;MongoDB&apos;</span>,{'\n'}
-                  {'    '}<span className="code-str">&apos;Express&apos;</span>, <span className="code-str">&apos;AI / LLMs&apos;</span>{'\n'}
-                  {'  '}],{'\n'}
-                  {'  '}<span className="code-key">available</span>: <span className="code-bool">true</span>{'\n'}
-                  {'}'};{'\n'}
+                  <span className="code-kw">const</span> <span className="code-id">engineer</span> <span className="code-op">=</span> {'{'}
+                  {'\n'}{'  '}<span className="code-key">name</span>: <span className="code-str">&apos;Edwin Makolo&apos;</span>,
+                  {'\n'}{'  '}<span className="code-key">role</span>: <span className="code-str">&apos;Software Engineer&apos;</span>,
+                  {'\n'}{'  '}<span className="code-key">location</span>: <span className="code-str">&apos;Toronto&apos;</span>,
+                  {'\n'}{'  '}<span className="code-key">skills</span>: [
+                  {'\n'}{'    '}<span className="code-str">&apos;React&apos;</span>, <span className="code-str">&apos;Node.js&apos;</span>, <span className="code-str">&apos;MongoDB&apos;</span>,
+                  {'\n'}{'    '}<span className="code-str">&apos;Express&apos;</span>, <span className="code-str">&apos;AI / LLMs&apos;</span>
+                  {'\n'}{'  '}],
+                  {'\n'}{'  '}<span className="code-key">available</span>: <span className="code-bool">true</span>
+                  {'\n'}{'}'}{';'}
                 </code>
               </pre>
             </div>

@@ -44,9 +44,9 @@
 }
 
 .about-stats {
-  padding: 0;
+  padding: 0 0 8px;
   background: var(--color-bg-dark);
-  margin-top: -2.5rem;
+  margin-top: -1.5rem;
   position: relative;
   z-index: 2;
 }
